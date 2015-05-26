@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   before_save {self.email = email.downcase}
   VALIDEMAIL = /\A[\w+\-.]+@[a-z\-.]+\.[a-z]+\z/i
 
-  validates :name, presence: true, length: { minimum: 5, maximum: 50 }
+  validates :username, presence: true, length: { minimum: 5, maximum: 50 }
 
   validates :email,
   presence: true, 
