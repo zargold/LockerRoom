@@ -1,2 +1,12 @@
-<h1>Goals#index</h1>
-<p>Find me in app/views/goals/index.html.erb</p>
+<h1>My Goals</h1>
+
+<% @goals.each do |goal| %>
+	<div class="goal-box">
+
+		Exercise: <%= goal.exercise_id %><br>
+		Reps: <%= goal.reps %><br>
+		Weight: <%= goal.weight %><br>
+		User ID: <%= goal.user_id %><br>
+	</div>
+	<br>
+<% end %>		
