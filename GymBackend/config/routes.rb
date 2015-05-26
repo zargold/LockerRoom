@@ -1,4 +1,34 @@
 Rails.application.routes.draw do
+  get 'exercises/new'
+
+  get 'exercises/show'
+
+  get 'exercises/edit'
+
+  get 'exercises/index'
+
+  get 'goals/index'
+
+  get 'goals/new'
+
+  get 'goals/show'
+
+  get 'goals/edit'
+
+  get 'users/index'
+
+  get 'users/new'
+
+  get 'users/create'
+
+  get 'users/edit'
+
+  get 'users/update'
+
+  get 'users/delete'
+
+  get 'users/show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
