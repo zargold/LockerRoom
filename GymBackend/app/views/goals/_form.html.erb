@@ -1,0 +1,9 @@
+<%= form_for(@goal, html: {class: 'form'}) do |f| %>
+
+<%= f.select("Contact", "email_provider", Contact::PROVIDERS, {:include_blank => true}) %>
+
+
+    <%= f.text_field :description, placeholder: 'Description' %><br>
+    <%= f.text_field :brewery, placeholder: 'Brewery' %><br>
+    <%= f.submit %>
+<% end %>

@@ -8,3 +8,4 @@
 
 
 Goal.create(exercise_id: 1, reps: 12, weight: 50, user_id: 1)
+Exercise.create(name: "Curl", description: "Stand up straight with a dumbbell in each hand. Curl the the weights while contracting your biceps.")
