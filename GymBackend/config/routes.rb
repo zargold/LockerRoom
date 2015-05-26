@@ -15,19 +15,11 @@ Rails.application.routes.draw do
 
   get 'goals/edit'
 
-  get 'users/index'
-
-  get 'users/new'
-
-  get 'users/create'
-
-  get 'users/edit'
-
-  get 'users/update'
-
-  get 'users/delete'
-
-  get 'users/show'
+  root "static_pages#home"
+  get "/contact" => "static_pages#contact"
+  get "/about" => "static_pages#about"
+  get "/help" => "static_pages#help"
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
