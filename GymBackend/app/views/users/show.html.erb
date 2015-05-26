@@ -1,15 +1,15 @@
 <% if @user %>
-<% provide(:title, @user.name) %>
+<% provide(:title, @user.username) %>
 <aside>
   <section>
     <h1>
       <%= gravatar_for @user %>
-      <%= @user.name %>
+      <%= @user.username %>
     </h1>
 
 <% else %>
     <div class="error">
-      <p> No users Found Sorry!</p>
+      <p> No users found sorry!</p>
     </div>
   </section>
 </aside>
