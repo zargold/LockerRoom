@@ -1,9 +1,10 @@
-<%= form_for(@goal, html: {class: 'form'}) do |f| %>
+<%= form_for(@goal) do |f| %>
 
-<%= f.select("Contact", "email_provider", Contact::PROVIDERS, {:include_blank => true}) %>
+	<%= f.label :goal %><br>
+	<%= f.collection_select(:exercise_id, @exercises, :id, :name, :include_blank => "Please Select") %>
 
+    <%= f.text_field :reps, placeholder: 'Reps' %><br>
+   	<%= f.text_field :weight, placeholder: 'Weight' %><br>
+   	<%= f.submit %>
 
-    <%= f.text_field :description, placeholder: 'Description' %><br>
-    <%= f.text_field :brewery, placeholder: 'Brewery' %><br>
-    <%= f.submit %>
 <% end %>

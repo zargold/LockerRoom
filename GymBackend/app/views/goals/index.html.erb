@@ -7,6 +7,8 @@
 		Reps: <%= goal.reps %><br>
 		Weight: <%= goal.weight %><br>
 		User ID: <%= goal.user_id %><br>
+		<%= link_to "Edit", edit_goal_path(goal.id) %>
+		<%= link_to "Delete", goal, method: :delete, class: 'delete' %>
 	</div>
 	<br>
 <% end %>		

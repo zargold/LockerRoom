@@ -1,10 +1,12 @@
 class GoalsController < ApplicationController
+
   def index
   	@goals = Goal.all
   end
 
   def new
   	@goal = Goal.new
+  	@exercises = Exercise.all
   end
 
   def show
@@ -13,6 +15,7 @@ class GoalsController < ApplicationController
 
   def edit
   	@goal = Goal.find(params[:id])
+  	@exercises = Exercise.all
   end
 
   def create
@@ -21,7 +24,7 @@ class GoalsController < ApplicationController
   end
 
   def update
-  	@goal = Goal.find([:id])
+  	@goal = Goal.find(params[:id])
   	@goal.update(goal_params)
   	redirect_to(goals_path)
   end
@@ -34,7 +37,7 @@ class GoalsController < ApplicationController
 
   private 
   	def goal_params
-  		params.require(:goal).permit(:exersice_id, :reps, :weight, :user_id)
+  		params.require(:goal).permit(:exercise_id, :reps, :weight, :user_id)
   	end
 
 end
