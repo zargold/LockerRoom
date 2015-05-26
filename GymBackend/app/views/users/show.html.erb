@@ -6,7 +6,7 @@
       <%= gravatar_for @user %>
       <%= @user.username %>
     </h1>
-
+    <%= link_to "Edit Profile!", edit_user_path(@user) %>
 <% else %>
     <div class="error">
       <p> No users found sorry!</p>
