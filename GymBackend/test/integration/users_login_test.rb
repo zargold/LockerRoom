@@ -1,4 +1,4 @@
-require 'test_helper'
+require('test_helper')
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
 
@@ -35,5 +35,17 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(@user), count: 0
   end
 
-  
+  test "login with remember me" do
+    login_in_as(@user, remember_me: "1")
+      #remember_token == the same as the one currently on the user's session is ideal...
+      puts 
+    assert_not_nil cookies[:remember_token]
+  end
+
+  test "login without remember me" do
+    login_in_as(@user, remember_me: "0")
+      #remember_token == the same as the one currently on the user's session is ideal...
+      assert_nil cookies['remember_token']
+  end
+
 end

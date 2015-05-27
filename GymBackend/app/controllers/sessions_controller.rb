@@ -8,8 +8,9 @@ class SessionsController < ApplicationController
     if !!(user&&user.authenticate(params[:session][:password]))
       #Log in user and redirect to show.
       log_in user
-      remember user
-      redirect_to user
+      params[:session][:remember_me]== "1" ?
+        remember(user) : forget(user)
+        redirect_to user
     else
       #flash an error messages...
       flash.now[:danger]= "Invalid email/password combo"
