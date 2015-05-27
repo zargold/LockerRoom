@@ -9,7 +9,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "login with invalid info" do
     get login_path
     post login_path, session: {email: "", password: ""}
-    #assert_template "sessions#new"
+    assert_template "sessions/new"
     assert_not flash.empty?
     get root_path
     assert flash.empty?
@@ -38,7 +38,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "login with remember me" do
     login_in_as(@user, remember_me: "1")
       #remember_token == the same as the one currently on the user's session is ideal...
-      puts 
     assert_not_nil cookies[:remember_token]
   end
 

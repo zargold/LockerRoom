@@ -26,9 +26,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update_attributes(user_params)
-    if @user.update_attributes?
-      flash[:success]= "Thank you for your edit"
+    
+    if(@user.update_attributes(user_params))
+    #handles success!
+      flash[:success]= "Your edit has been saved"
       redirect_to @user
     else
       render 'edit'
