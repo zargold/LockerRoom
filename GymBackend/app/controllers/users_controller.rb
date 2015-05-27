@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   #Dries up code because it sets user to that user with the params id..
-  before_action :user_finder, only: [:show, :edit, :update]
+  before_action :user_finder, only: [:show, :edit, :update, :correct_user]
   before_action :logged_in_user, only: [:edit, :update, :delete]
+  before_action :correct_user, only: [:edit, :update, :delete]
 
   #List of all users doesn't work yet...
   def index
@@ -59,7 +60,13 @@ class UsersController < ApplicationController
         redirect_to login_url
       end
     end
+    #confirms the correct user is actually the one attempting to make an update/edit/del
+    def correct_user
+      redirect_to(root_url) unless current_user?(@user)
+    end
+    #shortens code with the before method!
     def user_finder
       @user = User.find(params[:id])
     end
+
 end

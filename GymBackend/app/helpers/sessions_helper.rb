@@ -47,8 +47,11 @@ module SessionsHelper
       end
     end
   end
-  #Logging out involves destroying the session or refreshing it...
+  def current_user?(user)
+    user == current_user
+  end
 
+  #Logging out involves destroying the session or refreshing it..
   def log_out
     #deletes from database, delete's client's cookies and delete's the session's
     #user_id
