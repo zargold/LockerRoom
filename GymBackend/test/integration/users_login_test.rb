@@ -11,6 +11,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get login_path
     #step 2 we submit empty strings to the login page 
     post login_path, session: {email: "", password: ""}
+
     #we should see now again the new path for login because we failed to 
     #meet authentication standards...
     assert_template "sessions/new"
@@ -52,8 +53,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "login with remember me" do
     #ensure remember me actually works we do check the box
     log_in_as(@user, remember_me: "1")
-      #remember_token == the same as the one currently on the user's session is ideal...
-      puts
     # weak test do you have a cookie in general that is called remember_token
     #we are not checking if it is the correct remember token
     # we are trusting that because its a 64-bit encryption you have the right one.

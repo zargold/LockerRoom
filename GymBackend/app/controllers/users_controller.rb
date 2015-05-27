@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
   #Dries up code because it sets user to that user with the params id..
   before_action :user_finder, only: [:show, :edit, :update]
-  def user_finder
-    @user = User.find(params[:id])
-  end
+  before_action :logged_in_user, only: [:edit, :update, :delete]
+
   #List of all users doesn't work yet...
   def index
   end
@@ -32,9 +31,9 @@ class UsersController < ApplicationController
 #server gets patch or put request...
   def update
     #should update that user using the patch flag in the form...
-    @user.update_attributes(user_params)
-    if @user.update_attributes?
-      flash[:success]= "Thank you for your edit"
+    if(@user.update_attributes(user_params))
+    #handles success!
+      flash[:success]= "Profile updated"
       redirect_to @user
     else
       render 'edit'
@@ -52,5 +51,15 @@ class UsersController < ApplicationController
       #function works by first ensuring that the beginning of the path is users/
       #through require (then the permit: only allows these params to be taken in)
       params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    end
+    #Before filters confirms a logged in user.
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+    def user_finder
+      @user = User.find(params[:id])
     end
 end
