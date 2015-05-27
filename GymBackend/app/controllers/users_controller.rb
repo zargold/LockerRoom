@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     
     if(@user.update_attributes(user_params))
     #handles success!
-      flash[:success]= "Your edit has been saved"
+      flash[:success]= "Profile updated"
       redirect_to @user
     else
       render 'edit'
