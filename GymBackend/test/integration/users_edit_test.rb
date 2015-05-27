@@ -9,11 +9,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   test "User inputted invalid Edit Info" do
     get edit_user_path(@user)
     patch user_path(@user), user: {
-<<<<<<< HEAD
       username: "",
-=======
-      user_name: "",
->>>>>>> update-users
       email: "user@invalid.com",
       password: "asdf",
       password_confirmation: "asdf asdf"
@@ -25,7 +21,6 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     
     get login_path
     # @user.sign_in
-<<<<<<< HEAD
     uname= "mikeygun"
     uemail= "mikeyg@asdfasdf.com"
     get edit_user_path(@user)
@@ -34,26 +29,12 @@ class UsersEditTest < ActionDispatch::IntegrationTest
       password: "",
       password_confirmation: "",
       email: uemail
-=======
-    get edit_user_path(@user)
-    patch user_path(@user), user: {
-      user_name: "mikeygun",
-      password: "asdfghi",
-      password_confirmation: "asdfghi",
-      email: "mikeyg@asdfasdf.com"
->>>>>>> update-users
-      }
     assert_redirected_to @user
     assert_not flash.empty?
     @user.reload 
-<<<<<<< HEAD
     assert_equal @user.username, uname
     assert_equal @user.email, uemail
-=======
-    assert_equal @user.user_name, "mikeygun"
-    assert_equal @user.password, "asdfghi"
-    assert_equal @user.email, "mikeyg@asdfasdf.com"
->>>>>>> update-users
+
 
   end
 
