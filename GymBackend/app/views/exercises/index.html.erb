@@ -1,2 +1,13 @@
-<h1>Exercises#index</h1>
-<p>Find me in app/views/exercises/index.html.erb</p>
+<h1>All Exercises</h1>
+
+
+
+
+<% @exercises.each do |exercise| %>
+	<div class="goal-box">
+		Name: <%= exercise.name %><br>
+		Description: <%= exercise.description %>
+	</div>
+	<br />
+	<br />
+<% end %>		
