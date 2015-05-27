@@ -1,13 +1,13 @@
 <h1>All Exercises</h1>
 
-
-
-
+<%= link_to "Add Exercise", new_exercise_path, class: "link_button", method: :get %>
+<br />
+<br />
 <% @exercises.each do |exercise| %>
-	<div class="goal-box">
-		Name: <%= exercise.name %><br>
-		Description: <%= exercise.description %>
-	</div>
-	<br />
-	<br />
-<% end %>		
+    <div class="goal-box">
+        Name: <%= exercise.name %><br>
+        Description: <%= exercise.description %>
+    </div>
+    <br />
+    <br />
+<% end %>

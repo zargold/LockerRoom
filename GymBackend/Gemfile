@@ -22,6 +22,7 @@ gem 'sdoc', group: :doc
 gem 'httparty'
 
 group :development, :test do
+  gem 'pry'
   gem 'sqlite3'
   gem 'byebug'     
   gem 'web-console'
