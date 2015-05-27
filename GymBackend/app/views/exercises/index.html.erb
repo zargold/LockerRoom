@@ -1,5 +1,6 @@
 <h1>All Exercises</h1>
 
+<%= link_to "Add Exercise", new_exercise_path, class: "link_button", method: :get %><br />
 
 <% @exercises.each do |exercise| %>
     <div class="goal-box">

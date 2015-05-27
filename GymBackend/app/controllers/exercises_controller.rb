@@ -7,7 +7,16 @@ class ExercisesController < ApplicationController
   end
 
   def index
- 		@exercises = Exercise.all
+ 	@exercises = Exercise.all
+  end
+
+  def new
+  	@exercise = Exercise.new
+  end
+
+  def create
+  	Exercise.create(exercise_params)
+  	redirect_to(exercises_path)
   end
 
   private 

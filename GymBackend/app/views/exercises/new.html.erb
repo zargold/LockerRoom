@@ -1,2 +1,9 @@
-<h1>Exercises#new</h1>
-<p>Find me in app/views/exercises/new.html.erb</p>
+<%= form_for(@exercise) do |f| %>
+
+	<%= f.label :exercise %><br>
+
+    <%= f.text_field :name, placeholder: 'Name' %><br>
+   	<%= f.text_field :description, placeholder: 'Description' %><br>
+   	<%= f.submit %>
+
+<% end %>
