@@ -32,8 +32,7 @@ class UsersController < ApplicationController
 #server gets patch or put request...
   def update
     #should update that user using the patch flag in the form...
-    @user.update_attributes(user_params)
-    if @user.update_attributes?
+    if @user.update_attributes(user_params)
       flash[:success]= "Thank you for your edit"
       redirect_to @user
     else

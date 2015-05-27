@@ -15,9 +15,10 @@ class User < ActiveRecord::Base
   #allows user to login with any capitalization of their email but must be unique still...
   uniqueness: { case_sensitive: false}
   #min 5 -max 200  for password
+  #ensure that updating allows for no password insertion.
   validates :password, length: {
     minimum: 5, maximum: 200 }, 
-    presence: true
+    allow_blank: true
 
 
   has_secure_password
