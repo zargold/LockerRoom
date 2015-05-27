@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     end
     #confirms the correct user is actually the one attempting to make an update/edit/del
     def correct_user
-      redirect_to(root_url) unless current_user?(@user)
+      redirect_to(root_url), notice:[:danger] unless current_user?(@user)
     end
     #shortens code with the before method!
     def user_finder
