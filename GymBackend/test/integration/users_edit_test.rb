@@ -40,4 +40,18 @@ class UsersEditTest < ActionDispatch::IntegrationTest
 
   end
 
+  test "Friendly forwarding should apply to attempt for edit" do
+    get edit_user_path(@user)
+    log_in_as(@user)
+    assert_redirected_to edit_user_path(@user)
+    assert_template "users/edit"
+    patch user_path(@user), user: {
+      username: "",
+      email: "user@invalid.com",
+      password: "asdf",
+      password_confirmation: "asdf asdf"
+    }
+    assert_template "users/edit"
+  end 
+
 end

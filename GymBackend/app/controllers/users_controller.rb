@@ -46,7 +46,7 @@ class UsersController < ApplicationController
 
   def show
   end
-
+ 
   private
     def user_params
       #function works by first ensuring that the beginning of the path is users/
@@ -56,6 +56,7 @@ class UsersController < ApplicationController
     #Before filters confirms a logged in user.
     def logged_in_user
       unless logged_in?
+        store_location
         flash[:danger] = "Please log in."
         redirect_to login_url
       end

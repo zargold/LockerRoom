@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       params[:session][:remember_me]== "1" ?
         remember(user) : forget(user)
         #If so then we will persist their session id to DB and then...
-        redirect_to user
+        redirect_back_or user
     else
       #flash an error messages...Flashes for a short time using flash now.
       #only needed for render after the flash rather than redirect...
