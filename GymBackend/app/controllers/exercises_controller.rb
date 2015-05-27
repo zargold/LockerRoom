@@ -5,7 +5,7 @@ class ExercisesController < ApplicationController
   def show
   	@exercise = Exercise.find(params[:id])
   end
-
+ 
   def index
  	@exercises = Exercise.all
  	if params[:search]
@@ -22,6 +22,14 @@ class ExercisesController < ApplicationController
   def create
   	Exercise.create(exercise_params)
   	redirect_to(exercises_path)
+  end
+
+  def show
+  	@exercise = Exercise.find(params[:id])
+  end
+
+  def edit
+  	@exercises = Exercise.find(params[:id])
   end
 
   private 
