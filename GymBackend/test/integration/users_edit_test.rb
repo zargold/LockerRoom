@@ -36,8 +36,6 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user.reload 
     assert_equal @user.username, uname
     assert_equal @user.email, uemail
-
-
   end
 
 end

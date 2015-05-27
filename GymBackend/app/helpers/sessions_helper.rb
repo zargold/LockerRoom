@@ -47,6 +47,7 @@ module SessionsHelper
       end
     end
   end
+  #find current user...
   def current_user?(user)
     user == current_user
   end
@@ -60,5 +61,4 @@ module SessionsHelper
     @current_user = nil
   end
   #returns true if the user is logged in, false otherwise...
-
 end
