@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   #Dries up code because it sets user to that user with the params id..
-  before_action :user_finder, only: [:show, :edit, :update, :correct_user]
+  before_action :user_finder, only: [:show, :correct_user]
   before_action :logged_in_user, only: [:edit, :update, :delete]
   before_action :correct_user, only: [:edit, :update, :delete]
 
