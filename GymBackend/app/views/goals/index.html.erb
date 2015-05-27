@@ -1,5 +1,11 @@
 <h1>My Goals</h1>
 
+
+<%= link_to "Add Goal", new_goal_path, method: :get %>
+
+
+
+
 <% @goals.each do |goal| %>
 	<div class="goal-box">
 
