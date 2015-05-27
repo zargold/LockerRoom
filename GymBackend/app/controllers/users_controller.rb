@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   #Dries up code because it sets user to that user with the params id..
   before_action :user_finder, only: [:show, :edit, :update]
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update, :delete]
 
   #List of all users doesn't work yet...
   def index
