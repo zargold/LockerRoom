@@ -5,6 +5,12 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
+#Logging out involves destroying the session or refreshing it...
+
+  def log_out
+    session.delete(:user_id)
+    @current_user = nil
+  end
   #Returns current user if logged in..
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
@@ -13,4 +19,5 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
+
 end
