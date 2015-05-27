@@ -7,10 +7,16 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'httparty'
 
-response = HTTParty.get('https://wger.de/api/v2/exercise/?format=json')
+	for i in 2..15
+		response = HTTParty.get("https://wger.de/api/v2/exercise/?page=#{i}&format=json")
+		
+		response["results"].each do |exercise|
+			descrip = exercise["description"].gsub("<p>", "")
+			descrips = descrip.gsub("</p>", "")
+  			Exercise.create(name: exercise["name"], description: descrips)
+		end	
+	end
 
-response["results"].each do |exercise|
-  Exercise.create(name: exercise["name"], description: exercise["description"])
-end
+
 
 Goal.create(exercise_id: 1, reps: 12, weight: 50, user_id: 1)
