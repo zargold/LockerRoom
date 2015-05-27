@@ -49,8 +49,6 @@ module SessionsHelper
   end
   #find current user...
   def current_user?(user)
-    puts user
-    puts current_user
     user == current_user
   end
 
