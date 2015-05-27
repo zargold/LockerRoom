@@ -11,10 +11,14 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get login_path
     #step 2 we submit empty strings to the login page 
     post login_path, session: {email: "", password: ""}
+<<<<<<< HEAD
     #we should see now again the new path for login because we failed to 
     #meet authentication standards...
     assert_template "sessions/new"
     #we are checking whether the flash message is empty.. it shouldn't be
+=======
+    assert_template "sessions/new"
+>>>>>>> update-users
     assert_not flash.empty?
     #do we go to right place
     #Now that you messed up are you still going to get message?
@@ -53,11 +57,15 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     #ensure remember me actually works we do check the box
     log_in_as(@user, remember_me: "1")
       #remember_token == the same as the one currently on the user's session is ideal...
+<<<<<<< HEAD
       puts
     # weak test do you have a cookie in general that is called remember_token
     #we are not checking if it is the correct remember token
     # we are trusting that because its a 64-bit encryption you have the right one.
     assert_not_nil cookies["remember_token"]
+=======
+    assert_not_nil cookies[:remember_token]
+>>>>>>> update-users
   end
 # we do the opposite this time log in without checking the box.
   test "login without remember me" do

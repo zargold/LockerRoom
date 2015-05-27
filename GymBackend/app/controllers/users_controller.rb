@@ -31,9 +31,16 @@ class UsersController < ApplicationController
   end
 #server gets patch or put request...
   def update
+<<<<<<< HEAD
     #should update that user using the patch flag in the form...
     if @user.update_attributes(user_params)
       flash[:success]= "Thank you for your edit"
+=======
+    
+    if(@user.update_attributes(user_params))
+    #handles success!
+      flash[:success]= "Profile updated"
+>>>>>>> update-users
       redirect_to @user
     else
       render 'edit'
