@@ -1,5 +1,7 @@
 require 'test_helper'
 
+#basically sending a bot to make sure we have the right number of links of each kind
+# on our home page.
 class SiteLayoutTest < ActionDispatch::IntegrationTest
   test "layout links" do
     get root_path

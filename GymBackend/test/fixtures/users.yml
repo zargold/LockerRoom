@@ -1,4 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# This is our test subject he is a good user with proper Credentials so he should
+# pass all tests. and we use him in the helper method...
 mikey:
   username: MikeyExamp
   email: michael@example.com
