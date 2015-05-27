@@ -8,6 +8,11 @@ class ExercisesController < ApplicationController
 
   def index
  	@exercises = Exercise.all
+ 	if params[:search]
+ 		@exercises = Exercise.search(params[:search]).limit(30)
+ 	else
+ 		@exercises = Exercise.all.limit(30).order('name ASC')
+ 	end
   end
 
   def new

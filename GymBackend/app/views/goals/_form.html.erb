@@ -1,7 +1,7 @@
 <%= form_for(@goal) do |f| %>
 
 	<%= f.label :goal %><br>
-	<%= f.collection_select(:exercise_id, @exercises, :id, :name, :include_blank => "Please Select") %>
+	<%= f.collection_select(:exercise_id, @exercises.order('name ASC'), :id, :name, :include_blank => "Please Select") %>
 
     <%= f.text_field :reps, placeholder: 'Reps' %><br>
    	<%= f.text_field :weight, placeholder: 'Weight' %><br>

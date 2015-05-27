@@ -1,8 +1,23 @@
 <h1>All Exercises</h1>
 
+
+<%= form_tag(exercises_path, :method => "get") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Exercise" %>
+<%= submit_tag "Search" %>
+<% end %>
+
+
+
+<%= link_to "All Exercises", exercises_path, class: "link_button", method: :get %>
 <%= link_to "Add Exercise", new_exercise_path, class: "link_button", method: :get %>
+
+
 <br />
 <br />
+
+
+
+
 <% @exercises.each do |exercise| %>
     <div class="goal-box">
         Name: <%= exercise.name %><br>
