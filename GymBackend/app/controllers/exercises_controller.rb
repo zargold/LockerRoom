@@ -5,11 +5,10 @@ class ExercisesController < ApplicationController
   end
  
   def index
- 	@exercises = Exercise.all
  	if params[:search]
- 		@exercises = Exercise.search(params[:search]).limit(30)
+ 		@exercises = Exercise.search(params[:search]).paginate(page: params[:page])
  	else
- 		@exercises = Exercise.all.limit(30).order('name ASC')
+ 		@exercises = Exercise.order('name ASC').paginate(page: params[:page])
  	end
   end
 
