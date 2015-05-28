@@ -62,12 +62,6 @@ class UsersController < ApplicationController
       params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
     #Before filters confirms a logged in user.
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
     #confirms the correct user is actually the one attempting to make an update/edit/del
     def correct_user
       @user= User.find(params[:id])

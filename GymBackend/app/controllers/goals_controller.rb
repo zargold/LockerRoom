@@ -21,8 +21,9 @@ class GoalsController < ApplicationController
   end
 
   def create
+    puts "THIS IS THE #{current_user}"
   	@goal = current_user.goal.build(goal_params)
-    if (@micropost.save)
+    if (@goal.save)
       flash[:success] = "Goal Set!"
       redirect_to(current_user)
     else
