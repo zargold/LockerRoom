@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   #Dries up code because it sets user to that user with the params id..
-  before_action :logged_in_user, only: [:edit, :update, :delete]
+  before_action :logged_in_user, only: [:index, :edit, :update, :delete]
   before_action :correct_user, only: [:edit, :update, :delete]
 
   #List of all users doesn't work yet...
   def index
+    @users = User.paginate(page: params[:page])
   end
   #creating a new user /signingup
   def new
