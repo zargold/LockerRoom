@@ -1,5 +1,3 @@
-# 456710fb9b2e4234d74aa49f10c5a3619ef97847
-
 class ExercisesController < ApplicationController
 
   def show
