@@ -26,6 +26,9 @@ class UsersController < ApplicationController
       #otherwise let them try to sign up again...errors rendered as part of form..
       render 'new'
     end
+
+    # @goal = current_user.goals.new(params[:goal])
+    # @goal.save
   end
 
   def edit

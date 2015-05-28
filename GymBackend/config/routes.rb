@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get    "login" => "sessions#new"
   post   "login" => "sessions#create"
   delete "logout" => "sessions#destroy"
-  
-  resources :users
+  get "/users/:id/goals/:goal_id/" => "goals#goalbyName"
+  resources :users 
   resources :goals
   resources :exercises
 end

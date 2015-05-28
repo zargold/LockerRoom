@@ -18,10 +18,11 @@
   <ul>
 <% @exercises.each do |exercise| %>
     <li>
-      <div>Name: <%= link_to exercise.name, edit_exercise_path(exercise.id), class: "link_button", method: :get %>
+      <div>Name: <%= link_to exercise.name, edit_exercise_path(exercise.id), class: "link_button", method: :get %><br /> <br />
         Description: <%= exercise.description %>
       </div>
       </li>
+      <hr>
 <% end %>
 </ul>
 </div>
