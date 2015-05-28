@@ -5,9 +5,19 @@
   </small>
   <nav>
     <ul>
+      <li><%= link_to "All Exercises", exercises_path %></li> &nbsp;&nbsp;
+      <li class="dropup">
+      <a href="#" class="dropdown-toggle reverse" data-toggle="dropdown">
+      About <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu reverse">
       <li><%= link_to "About", about_path %></li>
       <li><%= link_to "Contact", contact_path %></li>
+      <li class="divider"></li>
       <li><%= link_to "Blog", "#" %></li>
+      <li><%= link_to "Help", "#" %></li>
+      </ul>
+
     </ul>
   </nav>
 </footer>
