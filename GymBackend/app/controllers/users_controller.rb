@@ -72,6 +72,6 @@ class UsersController < ApplicationController
     end
     #confirms admin user is logged in!
     def admin_user
-      redirect_to(root_url), notice: [:danger]= "You require administrative privilages for this!" unless current_user.admin?
+      redirect_to(root_url) unless current_user.admin?
     end
 end
