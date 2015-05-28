@@ -10,15 +10,17 @@ require 'httparty'
 # 			Exercise.create(name: exercise["name"], description: descrips)
 # 	end	
 # end
-	for i in 2..15
-		response = HTTParty.get("https://wger.de/api/v2/exercise/?page=#{i}&format=json")
-		
-		response["results"].each do |exercise|
-			descrip = exercise["description"].gsub(/<(\/[a-z]{1,}|[a-z]{1,})>/, "")
-
-  			Exercise.create(name: exercise["name"], description: descrip)
-		end	
-	end
+filtered=[]
+for i in 2..15
+	response = HTTParty.get("https://wger.de/api/v2/exercise/?page=#{i}&format=json")
+	filtered+=response["results"]
+  .compact
+  .reject {|exercise| exercise["description"].match(/([äßÜü]|die|sch|der)/i)||(exercise["description"].length<30)}
+end
+filtered.each{|ex| 
+  descrip = ex["description"].gsub(/<(\/[a-z]{1,}|[a-z]{1,})>/, "") 
+  Exercise.create(name: ex["name"], description: descrip)
+}
 
 99.times do |n|
   name = Faker::Name.name
