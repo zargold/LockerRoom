@@ -11,15 +11,17 @@ require 'httparty'
 # 	end	
 # end
 filtered=[]
+REMOVELANG=/([äßÜüäöБгпдляшиэбчыжющцфČúéýšžęłś]|der\b|die\b|mit\b|sbarra\b|Raz|de\b|Grudi\b|schenk|Auf\b)/
+
 for i in 2..15
 	response = HTTParty.get("https://wger.de/api/v2/exercise/?page=#{i}&format=json")
 	filtered+=response["results"]
   .compact
   .reject {|exercise| 
-    (exercise["description"].length<10)||
-    exercise["description"].match(/([äßÜü]|die|sch|der)/i)}
+    (exercise["description"].length<1)||
+    exercise["description"].match(REMOVELANG)||exercise["name"].match(REMOVELANG)}
 end
-filtered.each{|ex| 
+filtered.uniq.each{|ex| 
   descrip = ex["description"].gsub(/<(\/[a-z]{1,}|[a-z]{1,})>/, "") 
   Exercise.create(name: ex["name"], description: descrip)
 }
