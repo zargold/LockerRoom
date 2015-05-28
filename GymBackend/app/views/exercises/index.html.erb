@@ -9,6 +9,7 @@
 
 <div class="minilinks">
 <%= link_to "All Exercises", exercises_path, class: "link_button", method: :get %>
+&nbsp;&nbsp;
 <%= link_to "Add Exercise", new_exercise_path, class: "link_button", method: :get %>
 </div>
 
@@ -18,7 +19,8 @@
 <% @exercises.each do |exercise| %>
     <li>
       <div>Name: <%= link_to exercise.name, edit_exercise_path(exercise.id), class: "link_button", method: :get %>
-        Description: <%= exercise.description %></div>
+        Description: <%= exercise.description %>
+      </div>
       </li>
 <% end %>
 </ul>
