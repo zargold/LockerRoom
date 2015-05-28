@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
 
   def index
-  	@goals = Goal.all
+  	@goals = Goal.all.paginate(page: params[:page])
   end
 
   def new
