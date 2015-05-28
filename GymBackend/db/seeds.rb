@@ -14,14 +14,9 @@ require 'httparty'
 		response = HTTParty.get("https://wger.de/api/v2/exercise/?page=#{i}&format=json")
 		
 		response["results"].each do |exercise|
-			descrip = exercise["description"].gsub("<p>", "")
-			descript2 = descrip.gsub("</p>", "")
-			descript3 = descript2.gsub("<ul>", "")
-			descript4 = descript3.gsub("</ul>", "")
-			descript5 = descript4.gsub("<li>", "")
-			descript6 = descript5.gsub("</li>", "")
+			descrip = exercise["description"].gsub(/<(\/[a-z]{1,}|[a-z]{1,})>/, "")
 
-  			Exercise.create(name: exercise["name"], description: descript6)
+  			Exercise.create(name: exercise["name"], description: descrip)
 		end	
 	end
 
