@@ -20,7 +20,7 @@
 
 <% @exercises.each do |exercise| %>
     <div class="goal-box">
-        Name: <%= exercise.name %><br>
+        Name: <%= link_to exercise.name, edit_exercise_path(exercise.id), class: "link_button", method: :get %><br>
         Description: <%= exercise.description %>
     </div>
     <br />
