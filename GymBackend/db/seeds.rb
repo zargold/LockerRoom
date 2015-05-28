@@ -15,16 +15,20 @@ for i in 2..15
 	response = HTTParty.get("https://wger.de/api/v2/exercise/?page=#{i}&format=json")
 	filtered+=response["results"]
   .compact
-  .reject {|exercise| exercise["description"].match(/([äßÜü]|die|sch|der)/i)||(exercise["description"].length<30)}
+  .reject {|exercise| 
+    (exercise["description"].length<10)||
+    exercise["description"].match(/([äßÜü]|die|sch|der)/i)}
 end
 filtered.each{|ex| 
   descrip = ex["description"].gsub(/<(\/[a-z]{1,}|[a-z]{1,})>/, "") 
   Exercise.create(name: ex["name"], description: descrip)
 }
+#Create an admin!
+User.create!(username: "sudoroot", password: "asdf1234", password_confirmation: "asdf1234", email: "cyberninjajuice@gmail.com", admin: true)
 
 99.times do |n|
   name = Faker::Name.name
-  f_email = "example-#{n+1}@railstutorial.org"
+  f_email = "example-#{n+1}@example.com"
   password= "password"
   User.create!(username: name, email: f_email, password: password, password_confirmation: password)
 end

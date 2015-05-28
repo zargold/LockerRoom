@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   #Dries up code because it sets user to that user with the params id..
-  before_action :logged_in_user, only: [:index, :edit, :update, :delete]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :delete]
+  before_action :admin_user, only: [:admin]
 
   #List of all users doesn't work yet...
   def index
@@ -41,7 +42,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+      @sad_user = User.find(params[:id])
+      flash[:success]= "User Deleted!"
+      redirect_to users_url
   end
 
   def show
@@ -66,6 +70,8 @@ class UsersController < ApplicationController
       @user= User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
-    #shortens code with the before method!
-
+    #confirms admin user is logged in!
+    def admin_user
+      redirect_to(root_url), notice: [:danger]= "You require administrative privilages for this!" unless current_user.admin?
+    end
 end
