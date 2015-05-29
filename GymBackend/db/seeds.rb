@@ -11,7 +11,7 @@ require 'httparty'
 # 	end	
 # end
 filtered=[]
-REMOVELANG=/([äßÜüäöБгпдляшиэбчыжющцфČúéýšžęłś]|der\b|die\b|mit\b|sbarra\b|Raz|de\b|Grudi\b|schenk|Auf\b)/
+REMOVELANG=/([äßÜüäöБгпдляшиэбчыжющцфČúéýšžęłś]|schritt|schenk|Raz|der\b|die\b|mit\b|sbarra\b|de\b|Grudi\b|Auf\b)/
 
 for i in 2..15
 	response = HTTParty.get("https://wger.de/api/v2/exercise/?page=#{i}&format=json")
@@ -34,6 +34,10 @@ User.create!(username: "sudoroot", password: "asdf1234", password_confirmation: 
   password= "password"
   User.create!(username: name, email: f_email, password: password, password_confirmation: password)
 end
+users = User.order(:created_at).take(10)
+50.times do |n|
+  rando= n+1
+  users.each{ |user| user.goals.create!(exercise_id: rando, weight: rando, reps: rando)}
+end
 
-
-Goal.create(exercise_id: 1, reps: 12, weight: 50, user_id: 1)
+# Goal.create(exercise_id: 1, reps: 12, weight: 50, user_id: 1)

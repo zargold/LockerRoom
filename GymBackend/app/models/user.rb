@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
+  #required association, allows user.goals association and when a user is deleted by admin then all of their goal's are destroyed...
+  has_many :goals, dependent: :destroy
+  has_many :exercises, through: :goals
   #used for the ability to actually keep permanent cookies this is the ability to access the generated token.
-  has_many :goals
   attr_accessor :remember_token
   #converts to downcase email... to prevent duplication in db
   before_save {self.email = email.downcase}

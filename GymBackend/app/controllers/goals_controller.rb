@@ -4,7 +4,7 @@ class GoalsController < ApplicationController
   before_action :correct_user, only: :destroy
 
   def index
-  	@goals = Goal.all.paginate(page: params[:page])
+  	@goals = Goal.paginate(page: params[:page])
   end
 
   def new
@@ -22,7 +22,6 @@ class GoalsController < ApplicationController
   end
 
   def create
-    puts "THIS IS THE #{current_user}"
   	@goal = current_user.goal.build(goal_params)
     if (@goal.save)
       flash[:success] = "Goal Set!"

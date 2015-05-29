@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'workouts/new'
+
+  get 'workouts/index'
+
+  get 'workouts/edit'
+
   get   "sessions/new"
   root  "static_pages#home"
   get   "/contact" => "static_pages#contact"

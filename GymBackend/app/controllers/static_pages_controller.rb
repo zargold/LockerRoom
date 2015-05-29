@@ -9,6 +9,13 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
+  def main
+    @goals= current_user.goals.paginate(page: params[:page])
+    @me= current_user
+    @new_goal= current_user.goals.build if logged_in?
+    @new_workout= current_user.workouts
+  end
+
   def help
   end
   def check_if_logged

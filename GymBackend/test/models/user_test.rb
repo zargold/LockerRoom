@@ -63,7 +63,16 @@ class UserTest < ActiveSupport::TestCase
   end
 
 #that it returns false for authentication when blank
-  test "authenticated? should return false for user with nil digest" do
+  test "authenticated? false for nil digest" do
     assert_not @user.authenticated?('')
   end
+
+  test "goals should be destroyed with user" do
+    @user.save
+    @user.goals.create!(exercise_id: 5, reps: 20, weight: 30)
+    assert_difference "Goal.count", -1 do
+      @user.destroy
+    end
+  end
+
 end

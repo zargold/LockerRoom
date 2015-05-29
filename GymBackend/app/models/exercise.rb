@@ -1,5 +1,5 @@
 class Exercise < ActiveRecord::Base
-	belongs_to :goals
+	has_many :goals
 
 	def self.search(search)
 		if search
