@@ -1,4 +1,9 @@
+
+require 'json'
+
 class ExercisesController < ApplicationController
+
+
 
   def show
   	@exercise = Exercise.find(params[:id])
@@ -27,7 +32,11 @@ class ExercisesController < ApplicationController
 
   def edit
   	@exercises = Exercise.find(params[:id])
+    secret = JSON.load File.new('secrets.json')
+    @key = secret["key"]
+    puts @key
   end
+
 
   private 
   	def exercise_params

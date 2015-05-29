@@ -1,1 +1,11 @@
-Description: <%= @exercises.description %>
+<div id="ytThumbs"></div>
+
+
+
+<script type="text/javascript" src="http://www.yvoschaap.com/ytpage/ytembed.js"></script>
+
+<script type="text/javascript">
+    ytEmbed.init({'block':'ytThumbs','key':'<%= @key %>','q':'curl','type':'search','results':5,'meta':true,'player':'embed','layout':'full'});
+</script>
+
+
