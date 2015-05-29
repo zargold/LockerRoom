@@ -1,9 +1,11 @@
 class WorkoutsController < ApplicationController
   
   before_action :logged_in_user, only: [:create, :edit, :destroy]  
+  
   def new
     @new_workout = Workout.new
-    @all_goals = Goals.all
+    #@all_goals = Goal.all
+    @goals = current_user.goals
   end
 
   def create

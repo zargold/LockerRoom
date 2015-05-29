@@ -1,6 +1,6 @@
 class Goal < ActiveRecord::Base
-	belongs_to :exercise
 	belongs_to :user
+  belongs_to :exercise
   has_many :workouts, dependent: :destroy
   default_scope -> {order(created_at: :desc)}
   validates :user_id, presence: true
