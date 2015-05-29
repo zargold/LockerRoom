@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "/users/:id/goals/:goal_id/" => "goals#goalbyName"
   resources :users 
   resources :goals
-  resources :exercises
+  resources :exercises do
+    resources :goals
+  end
   resources :workouts
 end
