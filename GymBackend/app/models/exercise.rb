@@ -1,5 +1,5 @@
 class Exercise < ActiveRecord::Base
-	has_many :goals
+	has_one :goals
 
 	def self.search(search)
 		if search
