@@ -9,11 +9,12 @@
     <%= link_to "Edit Profile!", edit_user_path(@user) %>
   <% if @user.goals.any? %>
   <h3 class="goals"><%=@user.username%>'s Goals</h3>
-  <%=@goals.each do |goal|%>
-    <%=goal.exercise.name%>
-    <% goal.reps%>
-    <%goal.weight%>
+  <ul>
+  <% @goals.each do |goal| %>
+    <li><span><%=goal.exercise.name%></span> <span><%=goal.reps%></span>
+    <span><%=goal.weight%></span></li>
   <%end %>
+  </ul>
 <%end%>
 <% else %>
     <div class="error">
