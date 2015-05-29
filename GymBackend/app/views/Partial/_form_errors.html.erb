@@ -1,8 +1,8 @@
-<% if object.errors.any? %>
+<% if @user.errors.any? %>
   <div class="alert alert-danger">
     <h4><%= pluralize(@user.errors.count, "error") %> prevented this submission </h4>
     <ul>
-      <% object.errors.full_messages.each do |msg| %>
+      <% @user.errors.full_messages.each do |msg| %>
       <li style="color:rgba(220, 30,40,0.9)"><%= msg %></li>
       <% end %>
     </ul>

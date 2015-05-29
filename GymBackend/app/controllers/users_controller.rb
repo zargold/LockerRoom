@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   #Dries up code because it sets user to that user with the params id..
+
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :delete]
   before_action :admin_user, only: [:admin]
@@ -52,7 +53,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user= User.find(params[:id])
+    @user = User.find(params[:id])
+    @goals = @user.goals.paginate(page: params[:page])
   end
 
   private
@@ -62,12 +64,6 @@ class UsersController < ApplicationController
       params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
     #Before filters confirms a logged in user.
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
     #confirms the correct user is actually the one attempting to make an update/edit/del
     def correct_user
       @user= User.find(params[:id])

@@ -1,0 +1,10 @@
+<%= form_for(@goal, html: {multipart: true}) do |f| %>
+  <% render 'layouts/errors', object: f.object %>
+	<%= f.label :goal %><br>
+	<%= f.collection_select(:exercise_id, @exercises.order('name ASC'), :id, :name, :include_blank => "Please Select") %>
+
+    <%= f.number_field :reps, placeholder: 'Reps' %><br>
+   	<%= f.number_field :weight, placeholder: 'Weight' %><br>
+   	<%= f.submit %>
+
+<% end %>

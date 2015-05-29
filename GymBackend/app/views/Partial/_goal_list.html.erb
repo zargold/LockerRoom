@@ -1,0 +1,16 @@
+<%@goals.each do |goal| %>
+<li id="goal-<%= goal.id %>">
+  <span class="user">
+    <%= link_to gravatar_for(goal.user, size: 50), goal.user %>
+  </span>
+  <span class="content">
+    <%= goal.exercise.name %>
+  </span>
+  <span class="timestamp">
+  Committed <%= time_ago_in_words(goal.created_at) %> ago.
+  <% if current_user?(goal.user) %>
+    <%= link_to "delete", goal, method: :delete, data: {confirm: "You sure"} %>
+  <% end %>
+  </span>
+</li>
+<%end%>

@@ -1,5 +1,8 @@
 class GoalsController < ApplicationController
 
+  before_action :logged_in_user, only: [:create, :destroy, :index, :show]
+  before_action :correct_user, only: :destroy
+
   def index
   	@goals = Goal.all.paginate(page: params[:page])
   end
@@ -19,8 +22,14 @@ class GoalsController < ApplicationController
   end
 
   def create
-  	Goal.create(goal_params)
-  	redirect_to(goals_path)
+    puts "THIS IS THE #{current_user}"
+  	@goal = current_user.goal.build(goal_params)
+    if (@goal.save)
+      flash[:success] = "Goal Set!"
+      redirect_to(current_user)
+    else
+      render current_user
+    end
   end
 
   def update
@@ -30,14 +39,19 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-  	@goal = Goal.find(params[:id])
   	@goal.destroy
-  	redirect_to(goals_path)
+    flash[:success]="Micropost deleted"
+  	redirect_to(current_user)
   end
 
   private 
   	def goal_params
-  		params.require(:goal).permit(:exercise_id, :reps, :weight, :user_id)
+  		params.require(:goal).permit(:exercise_id, :reps, :weight)
   	end
+
+    def correct_user
+      @goal = current_user.goals.find_by(id:params[:id])
+      redirect_to root_url if @goal.nil?
+    end
 
 end
