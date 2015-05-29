@@ -7,10 +7,15 @@
       <%= @user.username %>
     </h1>
     <%= link_to "Edit Profile!", edit_user_path(@user) %>
+  <% if @user.goals.any? %>
+  <h3 class="goals"><%=@user.username%>'s Goals</h3>
+  <%=@goals.each do |goal|%>
+    <%=goal.exercise.name%>
+    <% goal.reps%>
+    <%goal.weight%>
+  <%end %>
+<%end%>
 <% else %>
-
-
-
     <div class="error">
       <p> No users found sorry!</p>
     </div>

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   #used for the ability to actually keep permanent cookies this is the ability to access the generated token.
+  has_many :goals
   attr_accessor :remember_token
   #converts to downcase email... to prevent duplication in db
   before_save {self.email = email.downcase}
@@ -50,7 +51,5 @@ class User < ActiveRecord::Base
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
-
-  has_many :goals
 
 end
