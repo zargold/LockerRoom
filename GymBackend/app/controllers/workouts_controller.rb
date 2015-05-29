@@ -9,10 +9,10 @@ class WorkoutsController < ApplicationController
   end
 
   def create
-    @workout = user.workouts.create(workout_params)
+    @workout = Workout.create(workout_params)
     if(@workout.save)
       flash[:success]= "Workout Recorded"
-      render main_page_path
+      redirect_to root_url
     end
   end
 
@@ -21,5 +21,10 @@ class WorkoutsController < ApplicationController
   end
 
   def edit
+  end
+
+  private
+  def workout_params
+    params.require(:workout).permit(:goal_id, :reps, :weight)
   end
 end
