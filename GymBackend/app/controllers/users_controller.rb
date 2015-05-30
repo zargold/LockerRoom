@@ -7,7 +7,11 @@ class UsersController < ApplicationController
 
   #List of all users doesn't work yet...
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.all.paginate(page: params[:page])
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @users }
+    end
   end
   #creating a new user /signingup
   def new
@@ -40,7 +44,7 @@ class UsersController < ApplicationController
     if(@user.update_attributes(user_params))
     #handles success!
       flash[:success]= "Profile updated"
-      redirect_to @user
+      redirect_to current_user
     else
       render 'edit'
     end
@@ -59,6 +63,10 @@ class UsersController < ApplicationController
     @workouts = @user.workouts.paginate(page: params[:page])
     @new_workout = Workout.new
     @new_goal = Goal.new
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @users }
+    end
   end
 
   private

@@ -18,8 +18,10 @@ class GoalsController < ApplicationController
 
   def show
   	@goal = Goal.find(params[:id])
-    format.html { render :show }
-    format.json { render json: users }
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @goal }
+    end
   end
 
   def edit

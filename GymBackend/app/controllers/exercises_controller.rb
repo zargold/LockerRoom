@@ -3,17 +3,27 @@ require 'json'
 
 class ExercisesController < ApplicationController
 
-
-
   def show
   	@exercise = Exercise.find(params[:id])
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @exercise }
+    end
   end
  
   def index
  	if params[:search]
  		@exercises = Exercise.search(params[:search]).paginate(page: params[:page])
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @exercises }
+    end
  	else
  		@exercises = Exercise.order('name ASC').paginate(page: params[:page])
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @exercises }
+    end
  	end
   end
 
@@ -28,6 +38,10 @@ class ExercisesController < ApplicationController
 
   def show
   	@exercise = Exercise.find(params[:id])
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @exercise }
+    end
   end
 
   def edit

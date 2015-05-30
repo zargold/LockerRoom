@@ -1,15 +1,5 @@
 require 'httparty'
 
-
-# for i in 2..15
-# 	response = HTTParty.get("https://wger.de/api/v2/exercise/?page=#{i}&format=json")
-	
-# 	response["results"].each do |exercise|
-# 		descrip = exercise["description"].gsub("<p>", "")
-# 		descrips = descrip.gsub("</p>", "")
-# 			Exercise.create(name: exercise["name"], description: descrips)
-# 	end	
-# end
 filtered=[]
 REMOVELANG=/([äßÜüäöБгпдляшиэбчыжющцфČúéýšžęłś]|schritt|schenk|Raz|der\b|die\b|mit\b|sbarra\b|de\b|Grudi\b|Auf\b)/
 
@@ -40,4 +30,8 @@ users = User.order(:created_at).take(10)
   users.each{ |user| user.goals.create!(exercise_id: rando, weight: rando, reps: rando)}
 end
 
-# Goal.create(exercise_id: 1, reps: 12, weight: 50, user_id: 1)
+goals = Goal.all
+15.times do |n|
+  ran= n+1
+  goals.each{ |goal| goal.workouts.create!(weight: ran, reps: ran)}
+end

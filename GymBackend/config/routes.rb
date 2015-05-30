@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get   "sessions/new"
+  
   root  "static_pages#home"
+  get   "sessions/new"
   get   "/contact" => "static_pages#contact"
   get    "/about"  => "static_pages#about"
   get    "/help"   => "static_pages#help"
@@ -8,7 +9,6 @@ Rails.application.routes.draw do
   post   "login"   => "sessions#create"
   delete "logout"  => "sessions#destroy"
   resources           :users 
-  resources           :workouts
   resources           :exercises
   
   resources           :users do
@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources           :goals do
     resources         :workouts
   end
+  resources           :workouts
 end

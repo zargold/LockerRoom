@@ -25,8 +25,21 @@ class WorkoutsController < ApplicationController
     end
   end
 
+  def show
+    @workout = Workout.find(params[:id])
+        respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @workout }
+    end
+  end
+
   def index
-    @all_workouts = Workout.paginate(page: params[:page])
+    goal = Goal.find(params[:goal_id])
+    @workouts = Workout.paginate(page: params[:page])
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: goal.workouts }
+    end
   end
 
   def edit

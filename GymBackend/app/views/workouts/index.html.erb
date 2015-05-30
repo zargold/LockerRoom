@@ -1,2 +1,7 @@
-<h1>Workouts#index</h1>
-<p>Find me in app/views/workouts/index.html.erb</p>
+<h3> All workouts </h3>
+
+<ul>
+  <li><span class="name top_lab"> Exercise Name</span> <span class="numbers top_lab">Reps</span>  <span class="numbers top_lab">Weight</span></li>
+  <%= render "Partial/workout_list" %>
+  <%= will_paginate @workouts %>
+</ul>
