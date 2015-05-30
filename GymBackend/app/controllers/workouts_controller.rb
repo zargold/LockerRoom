@@ -10,18 +10,18 @@ class WorkoutsController < ApplicationController
 
   def create
     @workout = Workout.new(workout_params)
-      if (Goal.find(@workout.goal_id).user == current_user)
-        @workout.save 
-        if(@workout.save)
-          flash[:success]= "Workout Recorded"
-          redirect_to root_url
-        else
-          flash[:danger]= "Workout Recording Failed"
-          redirect_to root_url
-        end
+    if (@workout.goal_id && Goal.find(@workout.goal_id).user == current_user)
+      @workout.save 
+      if(@workout.save)
+        flash[:success]= "Workout Recorded"
+        redirect_to root_url
       else
-        flash[:danger]= "You must be logged in to the correct user to save a workout"
+        flash[:danger]= "Workout Recording Failed"
+        redirect_to root_url
       end
+    else
+      flash[:danger]= "You must be logged in to the correct user to save a workout"
+      redirect_to root_url
     end
   end
 
@@ -37,4 +37,5 @@ class WorkoutsController < ApplicationController
   def workout_params
     params.require(:workout).permit(:goal_id, :reps, :weight)
   end
+
 end

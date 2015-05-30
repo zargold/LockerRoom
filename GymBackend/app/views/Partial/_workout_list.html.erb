@@ -1,0 +1,3 @@
+<% @workouts.each do |work| %>
+  <li><span class="name"><%=work.goal.goal_name%></span> <span class="numbers"><%= work.reps %></span> <span class="numbers"><%= work.weight %></span></li>
+<% end %>

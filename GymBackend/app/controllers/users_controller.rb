@@ -55,7 +55,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @goals = @user.goals.paginate(page: params[:page])
-    @workouts = @user.workouts
+    @exercises= Exercise.paginate(page:params[:page])
+    @workouts = @user.workouts.paginate(page: params[:page])
+    @new_workout = Workout.new
+    @new_goal = Goal.new
   end
 
   private

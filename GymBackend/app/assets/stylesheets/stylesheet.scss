@@ -5,7 +5,7 @@
 $l-grey: rgba(190, 190, 190, .75);
 $d-grey: rgba(160, 160, 160, .85);
 $g-grey: linear-gradient($l-grey, $d-grey);
-$back-f-grey: rgba(182, 222, 182, .1);
+$back-f-grey: rgba(120, 180, 180, .2);
 
 /*Transparents*/
 $back-l-grey: rgba(250, 250, 250, .222);
@@ -92,9 +92,10 @@ $main-trans: cubic-bezier(.87,.22,.87,.21);
   outline        : 0;
   vertical-align : baseline;
   background     : transparent;
-  font-size   : 1.1em;
-  font-family : $s-font;
-  color: $s-purp;
+  font-size      : 1.1em;
+  list-style     : none;
+  font-family    : $s-font;
+  color          : $s-purp;
   -webkit-box-sizing : border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing    : border-box; /* Firefox, other Gecko */
   box-sizing         : border-box; /* Opera/IE 8+ */
@@ -158,42 +159,43 @@ body {
 
   a, button, input {
     color: $d-green-cyan;
-    font-size: 1.1em;
-    padding: 3px;
+    font-size: 1em;
+    padding: 1px;
     text-decoration: blink;
     line-height: 1.1em;
     border: 0 solid transparent;
-    border-bottom: 1px solid $back-l-grey;
-   }
+    box-shadow: 0 2px 0 0 $l-green-cyan;
+   
    &:focus {
-    box-shadow: 5px 5px 5px $blue-cyan;
+    box-shadow: 3px 3px 3px $blue-cyan;
     outline: 0;
    }
-   a:hover, button:hover, input:hover {
+   &:hover {
     border-radius: 3px;
     box-shadow: inset 1px 1px 3px 1px $d-green-cyan;
     box-shadow: 1px 1px 3px 1px $d-green-cyan;
    }
+   }
 
   input {
-    border: 1px solid $g-cyan;
-    border-bottom: 3px solid $d-cyan;
     color: $d-cyan;
   }
 
-  [type=submit] {
+  input[type=submit] {
     background: $g-purp;
-    border: $g-purp 3px solid;
-    border-bottom: 5px solid $back-f-pink;
+    border: $g-purp 1px solid;
+    box-shadow: 0 2px 0 0 $full-pink;
     line-height: 1.1em; 
     color: $white;
     height: $but-h;
     min-height: $but-h;
     max-height: $but-h;
+    transition: .2s ease;
+    &:hover {
+      background: $l-purp;
+    }
   }
-  &:hover {
-    transition: width 0.4s ease;
-  }
+
 
   button {
     background: $g-green-cyan;
@@ -201,10 +203,13 @@ body {
     border: 2px solid $g-green-cyan;
     border-bottom: 4px solid $d-green;
     padding: 5px; 
+    transition: 0.4s ease;
+    
+    &:hover {
+      background: $l-green-cyan;
+    }
   }
-  &:hover {
-    transition: width 0.4s ease;
-  }
+
   h4 {
     font-size: .75em;
     padding: 5px;
@@ -257,7 +262,7 @@ body {
    min-width: 50px;
    max-height: $but-h+6;
    max-width: 60px;
-   padding: 10px;
+   padding: 5px;
 
    &:hover{
    background: transparent;
@@ -291,20 +296,26 @@ body {
   margin-left: 45%
 }
 
+span.top_lab {
+  background: $back-f-grey;
+  color: $l-cyan;
+  font-size: .8em;
+  box-shadow: 0 2px 0 0 $l-green-cyan;
+}
 ::-webkit-input-placeholder {
-  color: $blue-cyan;
+  color: $l-cyan;
   z-index: 10;
   }
   :-moz-placeholder {
-  color: $blue-cyan;
+  color: $l-cyan;
   z-index: 10;
   }
 ::-moz-placeholder{
-  color: $blue-cyan;
+  color: $l-cyan;
   z-index: 10;
 }
 :-ms-input-placeholder{
-  color: $blue-cyan;
+  color: $l-cyan;
   z-index: 10;
 }
 

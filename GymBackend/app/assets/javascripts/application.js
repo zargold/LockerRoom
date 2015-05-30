@@ -15,3 +15,10 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+//= require underscore
+//= require backbone
+// require models/tweet
+// require collections/tweet-collection
+// require models/user
+// require collections/user-collection
+// require views/tweet-views

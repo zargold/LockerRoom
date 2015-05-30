@@ -1,9 +1,19 @@
 <%= form_for(@new_workout, html: {multipart: true}) do |f| %>
   <% render 'layouts/errors', object: f.object %>
-  <%= f.label :goal %><br>
-  <%= f.collection_select(:goal_id, @goals, :id, :goal_name, :include_blank => "Please Select") %>
+  <h3>Record A New Workout!</h3>
+  <div>
+  <%= f.label "Workout sess for this " %>
+  <%= f.collection_select(:goal_id, @goals, :id, :goal_name, :include_blank => "one of my goals") %>
+  </div>
+  <div>
+  <%= f.label :Repitions %>
+  <%= f.number_field :reps, placeholder: 'eg. 30' %>
+  </div>
+  <div>
+  <%= f.label :weight %>
+  <%= f.number_field :weight, placeholder: 'eg. 500' %>
+  </div>
+  <br>
+  <%= f.submit "Post this workout" %>
 
-  <%= f.number_field :reps, placeholder: 'Reps' %><br>
-  <%= f.number_field :weight, placeholder: 'Weight' %><br>
-  <%= f.submit%>
 <% end %>

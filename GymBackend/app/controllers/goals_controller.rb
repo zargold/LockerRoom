@@ -5,6 +5,8 @@ class GoalsController < ApplicationController
 
   def index
   	@goals = Goal.paginate(page: params[:page])
+    format.html { render :index }
+    format.json { render json: users }
   end
 
   def new
@@ -14,6 +16,8 @@ class GoalsController < ApplicationController
 
   def show
   	@goal = Goal.find(params[:id])
+    format.html { render :show }
+    format.json { render json: users }
   end
 
   def edit
@@ -22,7 +26,7 @@ class GoalsController < ApplicationController
   end
 
   def create
-  	@goal = current_user.goal.build(goal_params)
+  	@goal = current_user.goals.build(goal_params)
     if (@goal.save)
       flash[:success] = "Goal Set!"
       redirect_to(current_user)

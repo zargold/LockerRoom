@@ -16,4 +16,8 @@
 !/log/.keep
 /tmp
 
+# Ignore JS libraries
+/app/assets/javascripts/libraries
+
+# Ignore Secrets!
 secrets.json
