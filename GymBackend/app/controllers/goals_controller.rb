@@ -5,8 +5,10 @@ class GoalsController < ApplicationController
 
   def index
   	@goals = Goal.paginate(page: params[:page])
-    format.html { render :index }
-    format.json { render json: users }
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @goals }
+  end
   end
 
   def new

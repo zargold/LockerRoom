@@ -15,8 +15,8 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
-//= require underscore
-//= require backbone
+//= require libraries/underscore
+//= require libraries/backbone
 // require models/tweet
 // require collections/tweet-collection
 // require models/user
