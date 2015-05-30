@@ -44,12 +44,14 @@ Currently SQLite3
 
 
 
-* Deployment instructions
+Deployment instructions
 
-1 `git clone`
-2 `bundle`
-3 `bundle update` -just to be safe
-4 `rake db:migrate db:seed`
-5 `rails s`
-6 Enter Web-browser: `http://localhost:3000/`
-7 Ensure Cookies are enabled...
+
+* `git clone`
+* `bundle`
+* `bundle update` -just to be safe
+* `rake db:migrate db:seed`
+* `rails s`
+* Enter Web-browser: `http://localhost:3000/`
+* Ensure Cookies are enabled...
+
