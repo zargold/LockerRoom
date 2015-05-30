@@ -7,11 +7,13 @@ Rails.application.routes.draw do
   get    "login" => "sessions#new"
   post   "login" => "sessions#create"
   delete "logout" => "sessions#destroy"
-  get "/users/:id/goals/:goal_id/" => "goals#goalbyName"
   resources :users 
-  resources :goals
-  resources :exercises do
+  resources :workouts
+  resources :exercises
+  resources :users do
     resources :goals
   end
-  resources :workouts
+  resources :goals do
+    resources :workouts
+  end
 end
