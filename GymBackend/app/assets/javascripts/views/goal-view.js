@@ -3,6 +3,7 @@ var currentUser; // sets the "current user" for display purposes
 // these Views are referenced in other files, so I declare them outside of the document.ready 
 
 var CreateGoalView;
+var createGoalView;
 var goalsView;
 var goalView;
 $(document).ready(function() {
@@ -45,6 +46,7 @@ $(document).ready(function() {
 
       // get the current user
       user = userCollection.get(signedInUserId);
+      console.log(user);
       currentUser = user.attributes.username;
 
       // grab the user's Goals and render the goals view
@@ -75,8 +77,9 @@ $(document).ready(function() {
 
     // update a Goal with the message in the text field
     updateGoal: function() {
-      var newMessage = this.$('.updated-message').val();
-      this.model.set({message: newMessage});
+      var newWeight = this.$('.updated-weight').val();
+      var newReps = this.$('.updated-reps').val();
+      this.model.set({weight: newWeight, reps: newReps});
       this.model.save();
     },
 
@@ -105,13 +108,19 @@ $(document).ready(function() {
     // render all the Goals
     render: function() {
       var el = this.$el;
+      console.log(el);
       // remove whatever is in the content-area and the element itself
       $('#content-area').html('');
       el.html('');
 
+      // get the current user
+      user = userCollection.get(signedInUserId);
+      console.log(user);
+      currentUser = user.attributes.username;
+      
       // add a header
       el.append('<h1>Goals for ' + currentUser + '</h1>');
-
+      console.
       // render a GoalView for each Goal
       goalCollection.each(function(goal) {
         el.append(new GoalView({model: goal}).render().el);
@@ -122,5 +131,5 @@ $(document).ready(function() {
       return this;
     }
   });
-  var createGoalView = new CreateGoalView;
+  createGoalView = new CreateGoalView;
 });

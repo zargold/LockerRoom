@@ -52,8 +52,10 @@
 
 <!-- Individual Goal -->
 <script type="text/template" id="goal-template">
+  <p>Goal</p>
   <span class="goal">
    {{goal.goal_name}} Reps Wanted- {{goal.reps}} Weight Wanted- {{goal.weight}} lbs.
+   <%= link_to 'Add Workout', '#', class: 'add-workout-goal' %>
    <%= link_to 'Delete', '#', class: 'delete-goal-link' %>
    <%= link_to 'Edit', '#', class: 'edit-goal-link' %>
   </span>

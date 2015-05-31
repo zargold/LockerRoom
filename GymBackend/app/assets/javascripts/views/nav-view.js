@@ -37,8 +37,12 @@ $(document).ready(function() {
   // get all users and set up createGoalView and UsersView
   userCollection.fetch({
     success: function(users) {
-      createGoalView = new CreateGoalView({collection: users.get(signedInUserId).goals});
-      new UsersView({collection: users});
+      console.log(users);
+      var userGoals = users.get(signedInUserId);
+      console.log(userGoals);
+      goalsView = new GoalsView({collection: userGoals});
+      //new UserView({collection: users});
+      goalsView.render();
     }
   });
 });

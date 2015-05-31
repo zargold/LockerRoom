@@ -1,5 +1,10 @@
 var GoalCollection = Backbone.Collection.extend({
   model: Goal,
-  url: "/goals"
+  url: "/goals",
+  initialize: function(){
+
+  }
 });
-var goalCollection= new GoalCollection;
+var goalCollection= new GoalCollection({
+
+})

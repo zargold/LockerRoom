@@ -27,7 +27,7 @@ class WorkoutsController < ApplicationController
 
   def show
     @workout = Workout.find(params[:id])
-        respond_to do |format|
+    respond_to do |format|
       format.html { render :show }
       format.json { render json: @workout }
     end

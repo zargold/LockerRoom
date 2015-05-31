@@ -38,13 +38,16 @@ $(document).ready(function() {
     // render the UsersView
     render: function() {
       var el = this.$el;
+      $('.hide_me').hide();
       $('#content-area').html(el);
 
       // render a UserView for each User
-      this.collection.each(function(user) {
+      userCollection.each(function(user) {
         el.append(new UserView({model: user}).render().el);
       });
     return this;
     }
   });
+  var usersView= new UsersView;
+  var userView = new UserView;
 });
