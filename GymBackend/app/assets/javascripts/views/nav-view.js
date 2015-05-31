@@ -1,5 +1,6 @@
 $(document).ready(function() {
   // View for Navigation Bar
+  
   var NavView = Backbone.View.extend({
     el: 'nav#js-Nav',
     events: { 
@@ -17,6 +18,7 @@ $(document).ready(function() {
 
     composeWorkout: function(){
       console.log("composeWorkout");
+      console.log(CreateGoalView)
       createWorkoutView.show();
     },
     // renders the UsersView

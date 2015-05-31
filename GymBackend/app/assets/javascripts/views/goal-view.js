@@ -3,8 +3,8 @@ var currentUser; // sets the "current user" for display purposes
 // these Views are referenced in other files, so I declare them outside of the document.ready 
 
 var CreateGoalView;
-var GoalsView;
-var GoalView;
+var goalsView;
+var goalView;
 $(document).ready(function() {
   // Create Goal View
   CreateGoalView = Backbone.View.extend({
@@ -22,16 +22,24 @@ $(document).ready(function() {
     // create a Goal using the contents of the message field
     createGoal: function() {
       // grab the contents from the field
-      var messageField = this.$('#new_message');
-      var message = messageField.val();
+      var exerciseChoice = this.$('#exercise-chosen');
+      var weightField = this.$('#weight');
+      var repsField = this.$('#reps');
+      var weight = weightField.val();
+      var reps = repsField.val();
+      var eID = exerciseChoice.val();
 
       // reset the field
-      messageField.val('');
-      var el = this.$el;
+
+      el = this.$el;
 
       // create the Goal
-      this.collection.create({ message: message});
-
+      goalCollection.create({ 
+        exercise_id: eID, 
+        weight: weight,
+        reps: reps});
+      weightField.val('');
+      repsField.val('');
       // hide the compose form
       el.hide();
 
@@ -91,7 +99,7 @@ $(document).ready(function() {
 
     initialize: function() {
       // Whenever we add, remove, or update a Goal, we re-render the view
-      this.listenTo(this.collection, 'sync add remove', this.render);
+      this.listenTo(goalCollection, 'sync add remove', this.render);
     },
 
     // render all the Goals
@@ -105,7 +113,7 @@ $(document).ready(function() {
       el.append('<h1>Goals for ' + currentUser + '</h1>');
 
       // render a GoalView for each Goal
-      this.collection.each(function(goal) {
+      goalCollection.each(function(goal) {
         el.append(new GoalView({model: goal}).render().el);
       });
 
@@ -114,4 +122,5 @@ $(document).ready(function() {
       return this;
     }
   });
+  var createGoalView = new CreateGoalView;
 });

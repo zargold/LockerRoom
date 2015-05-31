@@ -12,8 +12,8 @@
 <h3>New Goal:</h3>
   <div class="field">
   <%=label_tag :exercise %>
-  <select>
-    <%= @exercises.each do |ex| %>
+  <select id="exercise-chosen">
+    <% @exercises.each do |ex| %>
     <option value="<%= ex.id %>"><%= ex.name %></option>
     <% end %>
   </select>
