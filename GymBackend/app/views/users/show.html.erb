@@ -1,36 +1,85 @@
-<% if @user %>
-<% provide(:title, @user.username) %>
-<aside>
-  <section>
-    <h1>
-      <%= gravatar_for @user %>
-      <%= @user.username %>
-    </h1>
-    <%= link_to "Edit Profile!", edit_user_path(@user) %>
-    <%= render "Partial/goal_form" %>
-  <% if @user.goals.any? %>
-    <h3 class="goals"><%= @user.username %>'s Goals</h3>
-    <ul class="goalist">
-    <li><span class="image top_lab"> Gravatar</span> <span class="name top_lab">Goal's Name</span> <span class="timestamp top_lab">Created</span></li>
-      <%= render "Partial/goal_list" %>
-    
-    <span style="width:100% "><%= will_paginate @goals %></span>
-    </ul>
-  <%end%>
-<% if current_user.workouts.any?%>
-  <h3> My Workout Log </h3>
+<%if @user %>
+<h3><%= @user.username %></h3>
+<nav id="js-Nav">
+  <%= link_to 'Set a New Goal', '#', id: 'compose-goal', class: 'link_button' %>
+  <%= link_to 'Set a Workout', '#', id: 'compose-workout', class: 'link_button' %>
+</nav>
 
-  <ul>
-    <li><span class="name top_lab"> Exercise Name</span> <span class="numbers top_lab">Reps</span>  <span class="numbers top_lab">Weight</span></li>
-    <%= render "Partial/workout_list" %>
-    <%= will_paginate @workouts %>
-  </ul>
-<% end %>
-    <%= render "Partial/workout_form" %>
-<% else %>
-    <div class="error">
-      <p> No users found sorry!</p>
-    </div>
-  </section>
-</aside>
-<% end %>
+<!-- hidden Goal Setting form -->
+
+<div id="create-goal-area">
+<h3>New Goal:</h3>
+  <div class="field">
+  <%=label_tag :exercise %>
+  <select>
+    <%= @exercises.each do |ex| %>
+    <option value="<%= ex.id %>"><%= ex.name %></option>
+    <% end %>
+  </select>
+  </div>
+  <div class="field">
+  <%=label_tag :Reps %>
+  <%= number_field_tag :reps, nil, placeholder: "eg. 30 Reps" %>
+  </div>
+  <div class="field">
+  <%=label_tag :Weight %>
+  <%= number_field_tag :weight, nil, placeholder: "eg. 100 lbs." %>
+  </div>
+  <%= button_tag 'Set Goal', id: 'compose' %>
+
+</div>
+
+<!-- the main area of the page that will change depending on what we are viewing -->
+<div id = "content-area">
+</div>
+
+
+<!-- Backbone Templates -->
+
+<!-- Individual Goal -->
+<script type = "text/template" id = "goal-template">
+  <span class="goal">
+   {{goal.goal_name}} Reps Wanted- {{goal.reps}} Weight Wanted- {{goal.weight}} lbs.
+   <%= link_to 'Delete', '#', class: 'delete-goal-link' %>
+   <%= link_to 'Edit', '#', class: 'edit-goal-link' %>
+  </span>
+  <span class="edit-goal-form">
+  <input type="text" value="{{goal.goal_name}}" class="updated-message">
+  <input type="number" value="{{goal.weight}}" class="updated-weight">
+  <input type="number" value="{{goal.reps}}" class="updated-reps">
+  <button class="update-goal-button">Update</button>
+</script>
+
+<!-- Individual User -->
+<script type="text/template" id = "user-template">
+  <%= link_to '{{user.username}}', '#', class: 'username' %>
+</script>
+
+<!-- Individual Workout -->
+<script type="text/template" id = "workout-template">
+ <span class="goal">
+   {{goal.goal_name}} Reps Wanted- {{ goal.reps}} Weight-wanted {{goal.weight}} lbs.
+   <%= link_to 'Delete', '#', class: 'delete-goal-link' %>
+   <%= link_to 'Edit', '#', class: 'edit-goal-link' %>
+  </span>
+  <span class = "edit-workout-form">
+  <input type = "number" value = "{{workout.weight}}" class = "updated-weight">
+  <input type = "number" value = "{{workout.reps}}" class = "updated-reps">
+  <button class = "update-workout-button">Update</button>
+</script>
+
+<!-- switching to Mutache Templating-->
+<script>
+_.templateSettings = {
+  interpolate: /\{\{(.+?)\}\}/g
+};
+</script>
+
+<% if logged_in?&&current_user %>
+<script>
+var signedInUserId = <%= current_user.id %>; 
+// sets the current user id so Backbone Views have access to it
+</script>
+<%end %>
+<%end %>
+

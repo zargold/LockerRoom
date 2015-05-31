@@ -1,0 +1,36 @@
+<% if @user %>
+<% provide(:title, @user.username) %>
+<aside>
+  <section>
+    <h1>
+      <%= gravatar_for @user %>
+      <%= @user.username %>
+    </h1>
+    <%= link_to "Edit Profile!", edit_user_path(@user) %>
+    <%= render "Partial/goal_form" %>
+  <% if @user.goals.any? %>
+    <h3 class="goals"><%= @user.username %>'s Goals</h3>
+    <ul class="goalist">
+    <li><span class="image top_lab"> Gravatar</span> <span class="name top_lab">Goal's Name</span> <span class="timestamp top_lab">Created</span></li>
+      <%= render "Partial/goal_list" %>
+    
+    <span style="width:100% "><%= will_paginate @goals %></span>
+    </ul>
+  <%end%>
+<% if current_user.workouts.any?%>
+  <h3> My Workout Log </h3>
+
+  <ul>
+    <li><span class="name top_lab"> Exercise Name</span> <span class="numbers top_lab">Reps</span>  <span class="numbers top_lab">Weight</span></li>
+    <%= render "Partial/workout_list" %>
+    <%= will_paginate @workouts %>
+  </ul>
+<% end %>
+    <%= render "Partial/workout_form" %>
+<% else %>
+    <div class="error">
+      <p> No users found sorry!</p>
+    </div>
+  </section>
+</aside>
+<% end %>

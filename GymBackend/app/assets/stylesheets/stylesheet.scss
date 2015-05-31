@@ -157,14 +157,14 @@ body {
     max-height: 80%;
   }
 
-  a, button, input {
+  a, button, input, select {
     color: $d-green-cyan;
     font-size: 1em;
     padding: 1px;
     text-decoration: blink;
     line-height: 1.1em;
     border: 0 solid transparent;
-    box-shadow: 0 2px 0 0 $l-green-cyan;
+    box-shadow: 0 2px 1px 0 $l-green-cyan;
    
    &:focus {
     box-shadow: 3px 3px 3px $blue-cyan;
@@ -200,8 +200,7 @@ body {
   button {
     background: $g-green-cyan;
     color: $white;
-    border: 2px solid $g-green-cyan;
-    border-bottom: 4px solid $d-green;
+    border: 1px solid $l-green-cyan;
     padding: 5px; 
     transition: 0.4s ease;
     

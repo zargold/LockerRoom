@@ -1,7 +1,7 @@
 require 'httparty'
 
 filtered=[]
-REMOVELANG=/([äßÜüäöБгпдляшиэбчыжющцфČúéýšžęłś]|schritt|schenk|Raz|der\b|die\b|mit\b|sbarra\b|de\b|Grudi\b|Auf\b)/
+REMOVELANG=/([äßÜüäöБгпдляшиэбчыжющцфČúéýšžęłś]|schritt|schenk|Raz|setz|der\b|die\b|mit\b|sbarra\b|de\b|Grudi\b|Auf\b)/
 
 for i in 2..15
 	response = HTTParty.get("https://wger.de/api/v2/exercise/?page=#{i}&format=json")

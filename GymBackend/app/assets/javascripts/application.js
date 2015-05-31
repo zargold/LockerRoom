@@ -17,8 +17,12 @@
 //= require_tree .
 //= require libraries/underscore
 //= require libraries/backbone
-// require models/tweet
-// require collections/tweet-collection
-// require models/user
-// require collections/user-collection
-// require views/tweet-views
+//= require models/goal
+//= require collections/goalCollection
+//= require views/goal-view
+//= require models/user
+//= require collections/userCollection
+//= require views/user-view
+//= require models/workout
+//= require collections/workoutCollection
+//= require views/workout-view
