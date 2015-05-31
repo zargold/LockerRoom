@@ -1,3 +1,6 @@
 var UserCollection = Backbone.Collection.extend({
-  model: User
+  model: User,
+  url: "/users"
 });
+
+var userCollection= new UserCollection;

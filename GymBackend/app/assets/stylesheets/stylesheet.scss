@@ -250,9 +250,10 @@ body {
 
   .link_button {
    background: $g-cyan;
-   border: $g-cyan 1px solid;
-   border: 1px solid $g-cyan;
-   border-bottom: 2px solid $back-f-grey;
+   // border: $g-cyan 1px solid;
+   // border: 1px solid $g-cyan;
+   // border-bottom: 2px solid $back-f-grey;
+   box-shadow: 0 2px 0 0 $blue-cyan;
    color: $white;
    height: $but-h;
    width: 50px;
@@ -272,9 +273,6 @@ body {
   .update {
   }
 
-  .add_shirt {
-    padding: 20px;
-  }
 }
 
 .error {
@@ -290,9 +288,6 @@ body {
   span {
     color: $blue-cyan;
   }
-}
-.contacty {
-  margin-left: 45%
 }
 
 span.top_lab {

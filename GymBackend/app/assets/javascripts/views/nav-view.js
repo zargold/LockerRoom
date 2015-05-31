@@ -19,7 +19,7 @@ $(document).ready(function() {
     },
     // renders the UsersView
     showUsers: function() {
-      UserCollection.fetch({
+      userCollection.fetch({
         success: function() {
           new UsersView({collection: UserCollection});
         }
@@ -30,7 +30,7 @@ $(document).ready(function() {
   new NavView(); // initializes a new NavView
 
   // get all users and set up createGoalView and UsersView
-  UserCollection.fetch({
+  userCollection.fetch({
     success: function(users) {
       createGoalView = new CreateGoalView({collection: users.get(signedInUserId).goals});
       new UsersView({collection: users});

@@ -17,7 +17,6 @@
 //= require libraries/underscore
 //= require libraries/backbone
 //= require models/goal
-
 //= require models/user
 //= require collections/goalCollection
 //= require views/goal-view
@@ -26,4 +25,5 @@
 //= require models/workout
 //= require collections/workoutCollection
 //= require views/workout-view
+//= require views/nav-view
 //= require_tree .
