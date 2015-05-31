@@ -4,7 +4,7 @@ var currentUser; // sets the "current user" for display purposes
 
 var CreateGoalView;
 var GoalsView;
-
+var GoalView;
 $(document).ready(function() {
   // Create Goal View
   CreateGoalView = Backbone.View.extend({
@@ -27,7 +27,7 @@ $(document).ready(function() {
 
       // reset the field
       messageField.val('');
-      el = this.$el;
+      var el = this.$el;
 
       // create the Goal
       this.collection.create({ message: message});
@@ -50,7 +50,7 @@ $(document).ready(function() {
 
 
   // View for an individual Goal
-  var GoalView = Backbone.View.extend({
+  GoalView = Backbone.View.extend({
     tagName: 'li',
     template: _.template($('#goal-template').html()),
 

@@ -1,7 +1,7 @@
 $(document).ready(function() {
   // View for Navigation Bar
   var NavView = Backbone.View.extend({
-    el: 'nav#jsNav',
+    el: 'nav#js-Nav',
     events: { 
       'click #users-index'    : 'showUsers',
       'click #compose-goal'   : 'composeGoal',
@@ -10,15 +10,18 @@ $(document).ready(function() {
 
     // renders the ComposeGoalView
     composeGoal: function() {
-      currentUser = UserCollection.get(signedInUserId).attributes.username;
+      console.log("composeGoal");
+      currentUser = userCollection.get(signedInUserId).attributes.username;
       createGoalView.show();
     },
 
     composeWorkout: function(){
+      console.log("composeWorkout");
       createWorkoutView.show();
     },
     // renders the UsersView
     showUsers: function() {
+      console.log("showUsers");
       userCollection.fetch({
         success: function() {
           new UsersView({collection: UserCollection});

@@ -2,41 +2,43 @@ var currentUser; // sets the "current user" for display purposes
 
 // these Views are referenced in other files, so I declare them outside of the document.ready 
 
-var CreateGoalView;
-var GoalsView;
+var CreateWorkoutView;
+var WorkoutsView;
 
 $(document).ready(function() {
   // Create Goal View
-  CreateGoalView = Backbone.View.extend({
+  CreateWorkoutView = Backbone.View.extend({
     // attaches to create-goal-area div
-    el: "#create-goal-area",
+    el: "#create-workout-area",
 
-    // createGoalView will appear
+    // createWorkoutView will appear
     show: function() {
       this.$el.show();
     },
 
     // when we click the compose button, we can create a Goal
-    events: { 'click #compose': 'createGoal' },
+    events: { 'click #record': 'createWorkout' },
 
-    // create a Goal using the contents of the message field
-    createGoal: function() {
+    // create a Workout using the contents of the createWorkout Form...
+    createWorkout: function() {
       // grab the contents from the field
-      var messageField = this.$('#new_message');
-      var message = messageField.val();
+      var weightField = this.$('#weight');
+      var repsField = this.$('#reps');
+      var weight = weightField.val();
+      var reps = repsField.val();
 
       // reset the field
-      messageField.val('');
+      weightField.val('');
+      repsField.val('');
       el = this.$el;
 
-      // create the Goal
-      this.collection.create({ message: message});
+      // create the Workout
+      this.collection.create({ weight: weight, reps: reps});
 
       // hide the compose form
       el.hide();
 
-      // get the current user
-      user = userCollection.get(signedInUserId);
+      goal = goalCollection.get(signedInUserId);
       currentUser = user.attributes.username;
 
       // grab the user's Workouts for their graphical render.
@@ -50,44 +52,45 @@ $(document).ready(function() {
 
 
   // View for an individual Goal
-  var GoalView = Backbone.View.extend({
+  var WorkoutView = Backbone.View.extend({
     tagName: 'li',
-    template: _.template($('#goal-template').html()),
+    template: _.template($('#workout-template').html()),
 
     // add events to edit a Goal, update a Goal, and destroy a Goal.
-    events: {'click .edit-goal-link': 'editGoal',
-      'click .update-goal-button': 'updateGoal',
-      'click .delete-goal-link': 'destroyGoal'},
+    events: {'click .edit-workout-link': 'editWorkout',
+      'click .update-workout-button': 'updateWorkout',
+      'click .delete-workout-link': 'destroyWorkout'},
 
-    // hide the Goal and show the edit form
+    // hide the Workout and show the edit form
     editGoal: function() {
-      this.$('.goal').hide();
-      this.$('.edit-goal-form').show();
+      this.$('.workout').hide();
+      this.$('.edit-workout-form').show();
     },
 
-    // update a Goal with the message in the text field
+    // update a Workout with the message in the text field
     updateGoal: function() {
-      var newMessage = this.$('.updated-message').val();
-      this.model.set({message: newMessage});
+      var newWeight = this.$('.updated-weight').val();
+      var newReps = this.$('.updated-reps').val();
+      this.model.set({weight: newWeight, reps: newReps});
       this.model.save();
     },
 
-    // destroy a Goal
-    destroyGoal: function() {
+    // destroy a Workout
+    destroyWorkout: function() {
       this.model.destroy();
     },
 
-    // render the GoalView
+    // render the WorkoutView
     render: function() {
-      this.$el.html(this.template({goal: this.model.toJSON()}));
+      this.$el.html(this.template({workout: this.model.toJSON()}));
       return this;
     }
   });
 
-  // View for all of the Goals
-  GoalsView = Backbone.View.extend({
+  // View for all of the Workouts
+  WorkoutsView = Backbone.View.extend({
     tagName: 'ul',
-    id: 'goals',
+    id: 'workouts',
 
     initialize: function() {
       // Whenever we add, remove, or update a Goal, we re-render the view
@@ -102,11 +105,11 @@ $(document).ready(function() {
       el.html('');
 
       // add a header
-      el.append('<h1>Goals for ' + currentUser + '</h1>');
+      el.append('<h1>Workouts for ' + currentUser + '</h1>');
 
       // render a GoalView for each Goal
-      this.collection.each(function(goal) {
-        el.append(new GoalView({model: goal}).render().el);
+      this.collection.each(function(workout) {
+        el.append(new WorkoutView({model: workout}).render().el);
       });
 
       // add the view to the content-area

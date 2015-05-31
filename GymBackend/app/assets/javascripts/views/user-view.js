@@ -11,11 +11,11 @@ $(document).ready(function() {
 
     // gets the Goals from a User and renders a GoalsView for that user's Goals
     showGoals: function() {
-      var tweets = this.model.tweets;
+      var goals = this.model.goals;
       currentUser = this.model.attributes.username;
-      tweets.fetch({
+      goals.fetch({
         success: function() {
-          new GoalsView({collection: tweets});
+          new GoalsView({collection: goals});
         }
       });
     },
@@ -44,8 +44,7 @@ $(document).ready(function() {
       this.collection.each(function(user) {
         el.append(new UserView({model: user}).render().el);
       });
-
-      return this;
+    return this;
     }
   });
 });

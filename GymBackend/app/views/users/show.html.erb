@@ -8,7 +8,7 @@
 
 <!-- hidden Goal Setting form -->
 
-<div id="create-goal-area">
+<div class="hide_me" id="create-goal-area">
 <h3>New Goal:</h3>
   <div class="field">
   <%=label_tag :exercise %>
@@ -27,7 +27,20 @@
   <%= number_field_tag :weight, nil, placeholder: "eg. 100 lbs." %>
   </div>
   <%= button_tag 'Set Goal', id: 'compose' %>
+</div>
 
+<!-- hidden New Workout log Form -->
+<div class="hide_me" id="create-workout-area">
+<h3>New Workout:</h3>
+  <div class="field">
+  <%= label_tag :Reps %>
+  <%= number_field_tag :reps, nil, placeholder: "eg. 30 Reps" %>
+  </div>
+  <div class="field">
+  <%= label_tag :Weight %>
+  <%= number_field_tag :weight, nil, placeholder: "eg. 100 lbs." %>
+  </div>
+  <%= button_tag 'Set Goal', id: 'record' %>
 </div>
 
 <!-- the main area of the page that will change depending on what we are viewing -->
@@ -38,7 +51,7 @@
 <!-- Backbone Templates -->
 
 <!-- Individual Goal -->
-<script type = "text/template" id = "goal-template">
+<script type="text/template" id="goal-template">
   <span class="goal">
    {{goal.goal_name}} Reps Wanted- {{goal.reps}} Weight Wanted- {{goal.weight}} lbs.
    <%= link_to 'Delete', '#', class: 'delete-goal-link' %>
@@ -52,22 +65,24 @@
 </script>
 
 <!-- Individual User -->
-<script type="text/template" id = "user-template">
+<script type="text/template" id="user-template">
   <%= link_to '{{user.username}}', '#', class: 'username' %>
 </script>
 
-<!-- Individual Workout -->
-<script type="text/template" id = "workout-template">
+<script type="text/template" id="workout-template">
  <span class="goal">
    {{goal.goal_name}} Reps Wanted- {{ goal.reps}} Weight-wanted {{goal.weight}} lbs.
    <%= link_to 'Delete', '#', class: 'delete-goal-link' %>
    <%= link_to 'Edit', '#', class: 'edit-goal-link' %>
   </span>
-  <span class = "edit-workout-form">
-  <input type = "number" value = "{{workout.weight}}" class = "updated-weight">
-  <input type = "number" value = "{{workout.reps}}" class = "updated-reps">
-  <button class = "update-workout-button">Update</button>
+  <span class="edit-workout-form">
+    <input type="number" value="{{workout.weight}}" class="updated-weight">
+    <input type="number" value ="{{workout.reps}}" class="updated-reps">
+    <button class="update-workout-button">Update</button>
+  </span>
 </script>
+
+
 
 <!-- switching to Mutache Templating-->
 <script>
