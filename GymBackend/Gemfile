@@ -24,8 +24,7 @@ gem 'youtube_it'
 
 group :development, :test do
   gem 'pry'
-  gem 'sqlite3'
-  gem 'byebug'     
+  gem 'sqlite3'    
   gem 'web-console'
   gem 'spring'    
 end
