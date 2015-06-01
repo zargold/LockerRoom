@@ -18,7 +18,9 @@
   <ul>
 <% @exercises.each do |exercise| %>
     <li class="full-width">
-      <div>Name: <%= link_to exercise.name, edit_exercise_path(exercise.id), class: "link_button", method: :get %><br /> <br />
+      <div>Name: <%= link_to exercise.name, exercise, class: "link_button", method: :get %>
+      <%= link_to "edit", edit_exercise_path(exercise), class: "link_button", method: :get %>
+      <br /> <br />
         Description: <%= exercise.description %>
       </div>
     </li>
