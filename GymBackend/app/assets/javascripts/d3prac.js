@@ -1,11 +1,9 @@
-$( document ).ready(function() {
-function callBackD3(thingy) {
-d3.json(thingy, function(data){
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
+$( document ).ready(function(){
+  var margin = {top: 20, right: 20, bottom: 30, left: 50},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
-    var parseDate = d3.time.format("%Y%m%d").parse;
+    var parseDate = d3.time.format("%d-%b-%y").parse;
 
     var x = d3.time.scale()
         .range([0, width]);
@@ -26,30 +24,37 @@ var margin = {top: 20, right: 20, bottom: 30, left: 50},
         .y0(height)
         .y1(function(d) { return y(d.Close); });
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#d3-Chart").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  function callBackD3(workoutData){ 
+    d3.json(workoutData, function (error, data) { 
+      if(error) console.log(error);
+      console.log(workoutData);
+      console.log(data)
+      data.forEach(function(d) {
+        console.log(d);
+        d.Time = d.id;
+        d.Weight = +d.weight;
+      });
 
-    // d3.json('JSONstockPriceOverTime.php', function (data) {
-    //   data.forEach(function(d) {
-    //     d.Date = parseDate(d.Date);
-    //     d.Close = +d.Close;
-    //   });
-
-    x.domain(d3.extent(data, function(d) { return d.Date; }));
-    y.domain([0, d3.max(data, function(d) { return d.Close; })]);
+    x.domain(d3.extent(data, function(d) { return d.Time; }));
+    y.domain([0, d3.max(data, function(d) { return d.Weight; })]);
 
     svg.append("path")
       .datum(data)
       .attr("class", "area")
       .attr("d", area);
-
+//THIS DRAWS THE ACTUAL AXIS of THE CHART!
     svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+      .call(xAxis)
+      .append("text")
+        .style("text-anchor", "start")
+        .text("Workout Time Entry");
 
     svg.append("g")
       .attr("class", "y axis")
@@ -60,8 +65,11 @@ var margin = {top: 20, right: 20, bottom: 30, left: 50},
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text("Weight (Pounds)");
+
+
+
     });
-  });
-}
-    callBackD3("goals/1/workouts");
-});
+ }
+callBackD3("workouts.json");
+ });
+
