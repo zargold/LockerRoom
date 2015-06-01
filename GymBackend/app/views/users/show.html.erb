@@ -7,8 +7,9 @@
       <%= @user.username %>
     </h1>
     <%= link_to "Edit Profile!", edit_user_path(@user) %>
-
-    <h3 class="new_goal">Add a Goal</h3>
+    <br />
+    <br />
+    <h3 class="new_goal" style="min-width=100%">Add a Goal</h3>
     <div class="goalform">
     <%= render "Partial/goal_form" %>
     </div>
