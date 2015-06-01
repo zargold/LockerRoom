@@ -1,9 +1,11 @@
 <h1>All Exercises</h1>
+
 <%= form_tag(exercises_path, :method => "get") do %>
 <%= text_field_tag :search, params[:search], placeholder: "Search Exercise" %>
 <%= submit_tag "Search" %>
 <% end %>
 
+<br />
 
 <div class="minilinks">
 <%= link_to "All Exercises", exercises_path, class: "link_button", method: :get %>
@@ -15,7 +17,7 @@
 <%= will_paginate %>
   <ul>
 <% @exercises.each do |exercise| %>
-    <li>
+    <li class="full-width">
       <div>Name: <%= link_to exercise.name, edit_exercise_path(exercise.id), class: "link_button", method: :get %><br /> <br />
         Description: <%= exercise.description %>
       </div>

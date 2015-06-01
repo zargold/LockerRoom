@@ -158,7 +158,19 @@ form {
     }
   }
 }
+li.full-width {
+  max-width: 100%;
+  min-width: 100%;
+  text-align: left;
+  width: 100%;
 
+  div {
+    max-width: 100%;
+    min-width: 100%;
+    text-align: left;
+    width: 100%;
+  }
+}
 
 #session_remember_me {
   width: auto;
