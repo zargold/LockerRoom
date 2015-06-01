@@ -43,7 +43,13 @@ class WorkoutsController < ApplicationController
   end
 
   def edit
-    @all_goals = current_user.goals
+    @goals = current_user.goals
+    @new_workout = Workout.find(params[:id])
+  end
+
+  def update
+    @workout = Workout.find(params[:id])
+    @workout.update(workout_params)
   end
 
   private

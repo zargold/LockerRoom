@@ -1,5 +1,15 @@
 <% @workouts.each do |work| %>
-  <li class="workout_item"><span class="name"><%=work.goal.goal_name%></span> <span class="numbers"><%= work.reps %></span> <span class="numbers"><%= work.weight %></span></li>
+  <li class="workout_item">
+    <span class="name">
+      <%= link_to work.goal.goal_name, edit_workout_path(work) %>
+    </span> 
+    <span class="numbers">
+      <%= work.reps %>
+    </span>
+    <span class="numbers">
+      <%= work.weight %>
+    </span>
+  </li>
   <li class="workout_item"><%= time_ago_in_words(work.created_at) %></li>
 <% end %>
   <script>
