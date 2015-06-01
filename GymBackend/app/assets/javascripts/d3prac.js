@@ -40,7 +40,7 @@ $( document ).ready(function(){
         console.log(d);
         d.Date = d.id;
         d.Weight = +d.weight;
-        d.Reps = +d.reps*2;
+        d.Reps = +d.reps*1.2;
       });
 
     x.domain(d3.extent(data, function(d) { return d.Date; }));
