@@ -13,14 +13,13 @@
     <ul class="goalist">
     <li><span class="image top_lab"> Gravatar</span> <span class="name top_lab">Goal's Name</span> <span class="timestamp top_lab">Created</span></li>
       <%= render "Partial/goal_list" %>
-    
-    <span style="width:100% "><%= will_paginate @goals %></span>
+    <span style="width:100%">
+    <%= will_paginate @goals %></span>
     </ul>
   <%end%>
 <% if current_user.workouts.any?%>
-  <h3> My Workout Log </h3>
-
-  <ul>
+  <h3 class="workout_tit"> My Workout Log </h3>
+  <ul class="worklist">
     <li><span class="name top_lab"> Exercise Name</span> <span class="numbers top_lab">Reps</span>  <span class="numbers top_lab">Weight</span></li>
     <%= render "Partial/workout_list" %>
     <%= will_paginate @workouts %>
@@ -34,3 +33,31 @@
   </section>
 </aside>
 <% end %>
+<script type="text/javascript">
+$("ul.goalist").hide();
+
+$("h3.goals")
+  .click(function(){
+    viewToggler("ul.goalist");
+  });
+
+$("ul.worklist").hide();
+$("h3.workout_tit")
+  .click(function(){
+    viewToggler("ul.worklist");
+  });
+
+function viewToggler(elem){
+  if ($(elem).is(":hidden")){
+    $(elem).show()
+      .next()
+        .stop( true, true )
+        .slideToggle();
+  }else {
+    $(elem).hide()
+      .next()
+        .stop(true, true)
+        .slideToggle();
+  }
+}
+</script>
