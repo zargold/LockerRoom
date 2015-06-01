@@ -34,3 +34,115 @@
   </section>
 </aside>
 <% end %>
+<%if @user %>
+<h3><%= @user.username %></h3>
+<nav id="js-Nav">
+  <%= link_to 'Set a New Goal', '#', id: 'compose-goal', class: 'link_button' %>
+  <%= link_to 'Set a Workout', '#', id: 'compose-workout', class: 'link_button' %>
+  <%= link_to 'All Users', '#', id: 'users-index', class: 'link_button'%>
+</nav>
+<!-- 
+
+
+<div class="hide_me" id="create-goal-area">
+<h3>New Goal:</h3>
+  <div class="field">
+  <%=label_tag :exercise %>
+  <select id="exercise-chosen">
+    <% @exercises.each do |ex| %>
+    <option value="<%= ex.id %>"><%= ex.name %></option>
+    <% end %>
+  </select>
+  </div>
+  <div class="field">
+  <%=label_tag :Reps %>
+  <%= number_field_tag :reps, nil, placeholder: "eg. 30 Reps" %>
+  </div>
+  <div class="field">
+  <%=label_tag :Weight %>
+  <%= number_field_tag :weight, nil, placeholder: "eg. 100 lbs." %>
+  </div>
+  <%= button_tag 'Set Goal', id: 'compose' %>
+</div>
+
+<!-- hidden New Workout log Form -->
+<div class="hide_me" id="create-workout-area">
+<h3>New Workout:</h3>
+  <div class="field">
+  <%= label_tag :Reps %>
+  <%= number_field_tag :reps, nil, placeholder: "eg. 30 Reps" %>
+  </div>
+  <div class="field">
+  <%= label_tag :Weight %>
+  <%= number_field_tag :weight, nil, placeholder: "eg. 100 lbs." %>
+  </div>
+  <%= button_tag 'Set Goal', id: 'record' %>
+</div>
+
+<!-- the main area of the page that will change depending on what we are viewing -->
+<div id = "content-area">
+</div>
+
+
+<!-- Backbone Templates -->
+
+<!-- Individual Goal -->
+<script type="text/template" id="goal-template">
+  <p>Goal</p>
+  <span class="goal">
+   {{goal.goal_name}} Reps Wanted- {{goal.reps}} Weight Wanted- {{goal.weight}} lbs.
+   <%= link_to 'Add Workout', '#', class: 'add-workout-goal' %>
+   <%= link_to 'Delete', '#', class: 'delete-goal-link' %>
+   <%= link_to 'Edit', '#', class: 'edit-goal-link' %>
+  </span>
+  <span class="edit-goal-form">
+  <input type="text" value="{{goal.goal_name}}" class="updated-message">
+  <input type="number" value="{{goal.weight}}" class="updated-weight">
+  <input type="number" value="{{goal.reps}}" class="updated-reps">
+  <button class="update-goal-button">Update</button>
+</script>
+
+<!-- Individual User -->
+<script type="text/template" id="user-template">
+  <%= link_to '{{user.username}}', '#', class: 'username' %>
+</script>
+
+<script type="text/template" id="workout-template">
+ <span class="goal">
+   {{goal.goal_name}} Reps Wanted- {{ goal.reps}} Weight-wanted {{goal.weight}} lbs.
+   <%= link_to 'Delete', '#', class: 'delete-goal-link' %>
+   <%= link_to 'Edit', '#', class: 'edit-goal-link' %>
+  </span>
+  <span class="edit-workout-form">
+    <input type="number" value="{{workout.weight}}" class="updated-weight">
+    <input type="number" value ="{{workout.reps}}" class="updated-reps">
+    <button class="update-workout-button">Update</button>
+  </span>
+</script>
+
+
+
+<!-- switching to Mutache Templating-->
+<script>
+_.templateSettings = {
+    evaluate    : /\{\{([\s\S]+?)\}\}/g,
+    interpolate : /\{\{=([\s\S]+?)\}\}/g,
+    escape      : /\{\{-([\s\S]+?)\}\}/g
+  };
+</script>
+
+<% if logged_in? && current_user %>
+<script>
+console.log("hi");
+var signedInUserId = parseInt(<%= current_user.id %>); 
+console.log(signedInUserId);
+// sets the current user id so Backbone Views have access to it
+</script>
+<% elsif logged_in? %>
+<div class="error">
+Sorry
+</div>
+<% end %>
+<% end %>
+
+ -->

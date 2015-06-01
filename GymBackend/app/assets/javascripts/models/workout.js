@@ -1,2 +1,2 @@
-var Workout = Backbone.Model.extend({
-});
+// var Workout = Backbone.Model.extend({
+// });
