@@ -40,7 +40,7 @@ $( document ).ready(function(){
         console.log(d);
         d.Date = d.id;
         d.Weight = +d.weight;
-        d.Reps = +d.reps+2;
+        d.Reps = +d.reps*2;
       });
 
     x.domain(d3.extent(data, function(d) { return d.Date; }));
@@ -70,7 +70,7 @@ $( document ).ready(function(){
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Weight (Pounds)");
+      .text("Weight (Pounds)/Reps");
 
 
 
