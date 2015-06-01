@@ -35,7 +35,7 @@ class WorkoutsController < ApplicationController
 
   def index
     goal = Goal.find(params[:goal_id])
-    @workouts = Workout.paginate(page: params[:page])
+    @workouts = goal.workouts
     respond_to do |format|
       format.html { render :index }
       format.json { render json: goal.workouts }

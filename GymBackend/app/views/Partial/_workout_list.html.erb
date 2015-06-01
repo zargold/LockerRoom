@@ -1,3 +1,18 @@
 <% @workouts.each do |work| %>
-  <li><span class="name"><%=work.goal.goal_name%></span> <span class="numbers"><%= work.reps %></span> <span class="numbers"><%= work.weight %></span></li>
+  <li class="workout_item"><span class="name"><%=work.goal.goal_name%></span> <span class="numbers"><%= work.reps %></span> <span class="numbers"><%= work.weight %></span></li>
+  <li class="workout_item"><%= time_ago_in_words(work.created_at) %></li>
 <% end %>
+  <script>
+    $("li.workout_item")
+      .filter(":odd")
+        .hide()
+      .end()
+      .filter(":even")
+        .click(function(){
+        $(this)
+        .toggleClass("active")
+        .next()
+          .stop( true, true )
+          .slideToggle();
+      });
+  </script>

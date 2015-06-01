@@ -313,6 +313,26 @@ span.top_lab {
   z-index: 10;
 }
 
+path.line { 
+    stroke: $d-cyan;
+    stroke-width: 2;
+    fill: none;
+    z-index: 20000;
+}
+path.repsline {
+  stroke: $s-purp;
+  stroke-width: 3;
+  fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: $d-purp;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
 #header {
 }
 

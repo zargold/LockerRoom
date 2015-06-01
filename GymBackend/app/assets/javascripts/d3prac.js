@@ -18,11 +18,13 @@ $( document ).ready(function(){
     var yAxis = d3.svg.axis()
         .scale(y)
         .orient("left");
+    var valueline = d3.svg.line()
+      .x(function(d) {return x(d.Date) })
+      .y(function(d) {return y(d.Weight); });
 
-    var area = d3.svg.area()
-        .x(function(d) { return x(d.Date); })
-        .y0(height)
-        .y1(function(d) { return y(d.Close); });
+    var repsline = d3.svg.line()
+      .x(function(d){return x(d.Date); })
+      .y(function(d){return y(d.Reps); });
 
     var svg = d3.select("#d3-Chart").append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -36,17 +38,21 @@ $( document ).ready(function(){
       console.log(data)
       data.forEach(function(d) {
         console.log(d);
-        d.Time = d.id;
+        d.Date = d.id;
         d.Weight = +d.weight;
+        d.Reps = +d.reps+2;
       });
 
-    x.domain(d3.extent(data, function(d) { return d.Time; }));
+    x.domain(d3.extent(data, function(d) { return d.Date; }));
     y.domain([0, d3.max(data, function(d) { return d.Weight; })]);
 
     svg.append("path")
-      .datum(data)
-      .attr("class", "area")
-      .attr("d", area);
+      .attr("class", "line")
+      .attr("d", valueline(data));
+
+    svg.append("path")
+      .attr("class", "repsline")
+      .attr("d", repsline(data));
 //THIS DRAWS THE ACTUAL AXIS of THE CHART!
     svg.append("g")
       .attr("class", "x axis")
