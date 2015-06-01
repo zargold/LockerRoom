@@ -1,6 +1,6 @@
 <%= form_for(@new_workout, html: {multipart: true}) do |f| %>
   <% render 'layouts/errors', object: f.object %>
-  <h3>Record A New Workout!</h3>
+  <marquee><h4>Workout!</h4></marquee>
   <div>
   <%= f.label "Workout sess for this " %>
   <%= f.collection_select(:goal_id, @goals, :id, :goal_name, :include_blank => "one of my goals") %>

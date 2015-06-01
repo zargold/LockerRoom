@@ -7,7 +7,11 @@
       <%= @user.username %>
     </h1>
     <%= link_to "Edit Profile!", edit_user_path(@user) %>
+
+    <h3 class="new_goal">Add a Goal</h3>
+    <div class="goalform">
     <%= render "Partial/goal_form" %>
+    </div>
   <% if @user.goals.any? %>
     <h3 class="goals"><%= @user.username %>'s Goals</h3>
     <ul class="goalist">
@@ -25,7 +29,10 @@
     <%= will_paginate @workouts %>
   </ul>
 <% end %>
+    <h3 class="new_workout">Record A workout </h3>
+    <div class="workform">
     <%= render "Partial/workout_form" %>
+    </div>
 <% else %>
     <div class="error">
       <p> No users found sorry!</p>
@@ -46,6 +53,19 @@ $("h3.workout_tit")
   .click(function(){
     viewToggler("ul.worklist");
   });
+
+$("div.workform").hide();
+$("h3.new_workout")
+  .click(function(){
+    viewToggler("div.workform");
+});
+
+$("div.goalform").hide();
+$("h3.new_goal")
+  .click(function(){
+    viewToggler("div.goalform");
+});
+
 
 function viewToggler(elem){
   if ($(elem).is(":hidden")){
