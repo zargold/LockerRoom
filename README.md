@@ -1,7 +1,3 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
 # GYM LOCKER ROOM!
 
 User can :
@@ -47,11 +43,28 @@ Currently SQLite3
 Deployment instructions
 
 
-* `git clone`
-* `bundle`
-* `bundle update` -just to be safe
-* `rake db:migrate db:seed`
-* `rails s`
-* Enter Web-browser: `http://localhost:3000/`
 * Ensure Cookies are enabled...
+Guide to deploy:
 
+Initial Guide:
+
+* cd into ~/LockerRoom/Gymbackend
+* type bundle
+* If you receive an error you may have to gem install individual gems or even brew install pg
+* type bundle update (just to be sure)
+* If everything is good type rake db:migrate db:seed
+* This will take a while because we are seeding a lot of data that is filtered thoroughly.
+
+Next:
+
+* cd into ~/LockerRoom/GymBackend/app/assets/javascripts
+* type: mkdir libraries
+* cd libraries
+* curl -O http://backbonejs.org/backbone.js
+* curl -O http://underscorejs.org/underscore.js
+
+You now have all of the dependencies for the code. You may choose to rails s from ~/LockerRoom/GymBackend or if on digital ocean/heroku:
+
+* cd ~/LockerRoom/GymBackend
+* puma server -p80
+* Enter your IP address into a browser and enjoy!
