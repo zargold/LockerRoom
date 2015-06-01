@@ -1,7 +1,7 @@
 <% @workouts.each do |work| %>
   <li class="workout_item">
     <span class="name">
-      <%= link_to work.goal.goal_name, edit_workout_path(work) %>
+      <%= work.goal.goal_name %>&nbsp; <%= link_to "edit", edit_workout_path(work), class: "link_button small" %>
     </span> 
     <span class="numbers">
       <%= work.reps %>
