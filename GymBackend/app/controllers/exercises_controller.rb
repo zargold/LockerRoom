@@ -1,14 +1,11 @@
-
 require 'json'
-
 class ExercisesController < ApplicationController
 
+  before_action :logged_in_user, only: [:create, :edit, :update]
+  
   def show
   	@exercise = Exercise.find(params[:id])
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render json: @exercise }
-    end
+    @goals = @exercise.goals;
   end
  
   def index
@@ -36,21 +33,16 @@ class ExercisesController < ApplicationController
   	redirect_to(exercises_path)
   end
 
-  def show
-  	@exercise = Exercise.find(params[:id])
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render json: @exercise }
-    end
-  end
-
   def edit
-  	@exercises = Exercise.find(params[:id])
-    secret = JSON.load File.new('secrets.json')
-    @key = secret["key"]
-    puts @key
+  	@exercise = Exercise.find(params[:id])
+
   end
 
+  def update
+    @exercise = Exercise.find(params[:id])
+    @exercise.update(exercise_params)
+    redirect_to @exercise
+  end
 
   private 
   	def exercise_params

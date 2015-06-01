@@ -1,5 +1,5 @@
 class Exercise < ActiveRecord::Base
-	has_one :goals
+	has_many :goals
 
   default_scope -> {order(name: :desc)}
 	def self.search(search)

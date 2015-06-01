@@ -1,6 +1,6 @@
 class WorkoutsController < ApplicationController
   
-  before_action :logged_in_user, only: [:create, :edit, :destroy]  
+  before_action :logged_in_user, only: [:create, :edit, :destroy, :update]  
   
   def new
     @new_workout = Workout.new
