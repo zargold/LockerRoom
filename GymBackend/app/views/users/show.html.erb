@@ -22,7 +22,7 @@
     </ul>
   <%end%>
 <% if current_user.workouts.any?%>
-  <h3 class="workout_tit"> My Workout Log </h3>
+  <h3 class="workout_tit"> <%= @user.username %>'s Workout Log </h3>
   <ul class="worklist">
     <li><span class="name top_lab"> Exercise Name</span> <span class="numbers top_lab">Reps</span>  <span class="numbers top_lab">Weight</span></li>
     <%= render "Partial/workout_list" %>
