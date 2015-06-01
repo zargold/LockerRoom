@@ -4,7 +4,10 @@
     <%= link_to gravatar_for(goal.user, size: 50), goal.user %>
   </span>
   <span class="name">
-    <%= link_to goal.goal_name, goal_workouts_path(goal) %>
+    <%= link_to goal.goal_name, goal_workouts_path(goal) %> 
+    <% if current_user?(goal.user) %>
+    <%= link_to "Edit", edit_goal_path(goal), class: "link_button small" %>
+    <% end %>
   </span>
   <span class="timestamp">
   Committed <%= time_ago_in_words(goal.created_at) %> ago.

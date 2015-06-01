@@ -25,7 +25,7 @@ class GoalsController < ApplicationController
   end
 
   def edit
-  	@goal = Goal.find(params[:id])
+  	@new_goal = Goal.find(params[:id])
   	@exercises = Exercise.all
   end
 
