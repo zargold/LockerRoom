@@ -26,8 +26,14 @@ group :development, :test do
   gem 'pry'
   gem 'sqlite3'    
   gem 'web-console'
-  gem 'spring'    
+  gem 'spring'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false    
 end
+gem 'puma'
 
 group :test do
   gem 'minitest-reporters'
@@ -37,5 +43,4 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
-  gem 'puma'
 end
