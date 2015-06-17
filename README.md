@@ -62,16 +62,17 @@ Next:
 * cd libraries
 * curl -O http://backbonejs.org/backbone.js
 * curl -O http://underscorejs.org/underscore.js
-``` bash
 You should see:
+``` bash
+
 /LockerRoom/GymBackend/app/assets/javascripts/libraries$ curl -O http://backbonejs.org/backbone.js
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100 70852  100 70852    0     0   668k      0 --:--:-- --:--:-- --:--:--  671k
 
-or something of the sort sometimes you will see 0 for %Total that means you got nothing try again.
-```
 
+```
+or something of the sort sometimes you will see 0 for %Total that means you got nothing try again.
 
 You now have all of the dependencies for the code. You may choose to rails s from ~/LockerRoom/GymBackend or if on digital ocean/heroku:
 
