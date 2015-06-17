@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :goals, dependent: :destroy
   has_many :exercises, through: :goals
   has_many :workouts, through: :goals
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
   #used for the ability to actually keep permanent cookies this is the ability to access the generated token.
   attr_accessor :remember_token
   #converts to downcase email... to prevent duplication in db
@@ -47,6 +49,19 @@ class User < ActiveRecord::Base
 #when the user signs out we want to get rid of that token from database.
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+#Follow  a new
+  def follow(other)
+    active_relationships.create(followed_id: other.id)
+  end
+#unfollow a user
+  def unfollow(other)
+    active_relationships.find_by(followed_id: other.id).destroy
+  end
+
+  def following?(other)
+    !active_relationships.find_by(followed_id: other.id).nils?
   end
   #Checks whether something is authentic based on the Remember token From the cookie!
   def authenticated?(remember_token)

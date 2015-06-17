@@ -1,6 +1,6 @@
 <% if @user.errors.any? %>
   <div class="alert alert-danger">
-    <h4><%= pluralize(@user.errors.count, "error") %> prevented this submission </h4>
+    <h6><%= pluralize(@user.errors.count, "error") %> prevented this submission </h6>
     <ul>
       <% @user.errors.full_messages.each do |msg| %>
       <li style="color:rgba(220, 30,40,0.9)"><%= msg %></li>
